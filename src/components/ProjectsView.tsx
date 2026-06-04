@@ -26,6 +26,14 @@ interface ProjectsViewProps {
 
 export default function ProjectsView({ searchQuery, selectedProject, setSelectedProject }: ProjectsViewProps) {
   const [activeFilter, setActiveFilter] = useState<'all' | 'ai' | 'react' | 'accessibility' | 'other'>('all');
+  const [toastMessage, setToastMessage] = useState<string | null>(null);
+
+  const showToast = (msg: string) => {
+    setToastMessage(msg);
+    setTimeout(() => {
+      setToastMessage(null);
+    }, 4500);
+  };
 
   const filterCategories = [
     { label: 'ALL RUNNABLES', value: 'all' },
@@ -179,16 +187,25 @@ export default function ProjectsView({ searchQuery, selectedProject, setSelected
                     <span>GITHUB</span>
                   </a>
 
-                  <button
-                    onClick={() => {
-                      sysSynth.playSuccess();
-                      alert(`Accessing live deployment node for ${proj.title}... (Port 3000 Active)`);
+                  <a
+                    href={proj.liveUrl && proj.liveUrl !== '#' ? proj.liveUrl : undefined}
+                    target={proj.liveUrl && proj.liveUrl !== '#' ? "_blank" : undefined}
+                    rel="noreferrer"
+                    onClick={(e) => {
+                      if (!proj.liveUrl || proj.liveUrl === '#') {
+                        e.preventDefault();
+                        sysSynth.playError();
+                        showToast(`Deployment node for ${proj.title} is preparing for continuous integration. Local simulation is fully active!`);
+                      } else {
+                        sysSynth.playSuccess();
+                        showToast(`Handshake secure. Redirecting to deployment server at ${proj.title}...`);
+                      }
                     }}
                     className="py-2 px-2 rounded-lg bg-[#ccff00] hover:brightness-110 text-black text-[10px] font-headline font-bold flex items-center justify-center gap-1.5 transition-all text-center cursor-pointer"
                   >
                     <ExternalLink className="w-3.5 h-3.5" />
                     <span>LIVE_DEMO</span>
-                  </button>
+                  </a>
                 </div>
               </div>
 
@@ -337,6 +354,25 @@ export default function ProjectsView({ searchQuery, selectedProject, setSelected
               </a>
             </div>
 
+          </div>
+        </div>
+      )}
+
+      {/* Dynamic Security/Deployment Alert Toast */}
+      {toastMessage && (
+        <div className="fixed bottom-6 left-1/2 -translate-x-1/2 md:left-auto md:right-6 md:translate-x-0 z-50 animate-in fade-in slide-in-from-bottom-4 duration-300">
+          <div className="bg-black/95 border-2 border-[#ccff00]/40 text-white font-mono text-[10px] tracking-wider px-4 py-3 rounded-xl shadow-2xl flex items-center gap-3 backdrop-blur max-w-sm">
+            <span className="w-2 h-2 rounded-full bg-[#ccff00] animate-ping shrink-0" />
+            <div className="space-y-0.5">
+              <span className="text-[#ccff00] font-black uppercase block">SYS_NET_ALERT:</span>
+              <span className="text-white/80 font-sans font-light text-xs leading-normal">{toastMessage}</span>
+            </div>
+            <button 
+              onClick={() => setToastMessage(null)} 
+              className="text-white/40 hover:text-white shrink-0 ml-2"
+            >
+              <X className="w-3.5 h-3.5" />
+            </button>
           </div>
         </div>
       )}

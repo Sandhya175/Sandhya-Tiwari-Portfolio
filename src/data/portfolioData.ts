@@ -39,7 +39,7 @@ export const PROJECTS_DATA: Project[] = [
       'Sub-30ms raw edge feed execution on standard consumer webcams'
     ],
     liveUrl: '#',
-    githubUrl: 'https://github.com/sandhyatiwari1755/sign-language-detection',
+    githubUrl: 'https://github.com/Sandhya175/sign-language-detection',
     caseStudyUrl: '#case-study-sign',
     stats: [
       { label: 'Response Latency', value: '18ms' },
@@ -62,7 +62,7 @@ export const PROJECTS_DATA: Project[] = [
       'Awareness interface detailing processing safety standards for battery items'
     ],
     liveUrl: '#',
-    githubUrl: 'https://github.com/sandhyatiwari1755/e-waste-monitor',
+    githubUrl: 'https://github.com/Sandhya175/e-waste-monitor',
     caseStudyUrl: '#case-study-ewaste',
     stats: [
       { label: 'Scrap Processed', value: '4.2 Tons' },
@@ -85,7 +85,7 @@ export const PROJECTS_DATA: Project[] = [
       'Parallax scrolling environments for sensory travel destination profiles'
     ],
     liveUrl: '#',
-    githubUrl: 'https://github.com/sandhyatiwari1755/trippy-go',
+    githubUrl: 'https://github.com/Sandhya175/trippy-go',
     caseStudyUrl: '#case-study-trippy',
     stats: [
       { label: 'Booking Latency', value: '45ms' },
@@ -108,7 +108,7 @@ export const PROJECTS_DATA: Project[] = [
       'Encrypted operator entry portal backed by standard web JWT payloads'
     ],
     liveUrl: '#',
-    githubUrl: 'https://github.com/sandhyatiwari1755/scafe-portal',
+    githubUrl: 'https://github.com/Sandhya175/scafe-portal',
     caseStudyUrl: '#case-study-scafe',
     stats: [
       { label: 'Order Processing Speed', value: '-35%' },

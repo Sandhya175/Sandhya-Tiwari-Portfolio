@@ -12,7 +12,8 @@ import {
   HelpCircle,
   VideoOff,
   Sparkles,
-  CameraOff
+  CameraOff,
+  X
 } from 'lucide-react';
 import { sysSynth } from '../utils/audio';
 
@@ -33,6 +34,14 @@ export default function GameView() {
   const [gestureMatchCount, setGestureMatchCount] = useState(0);
   const [confidenceRate, setConfidenceRate] = useState(0);
   const [fpsVal, setFpsVal] = useState(30);
+  const [cameraError, setCameraError] = useState<string | null>(null);
+
+  const triggerErrorToast = (msg: string) => {
+    setCameraError(msg);
+    setTimeout(() => {
+      setCameraError(null);
+    }, 4500);
+  };
 
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -141,7 +150,7 @@ export default function GameView() {
       requestAnimationFrame(runSimulationLoop);
     } catch (err) {
       sysSynth.playError();
-      alert('Camera access denied or unavailable. Fallback simulated analyzer is fully active!');
+      triggerErrorToast('Camera access denied or unavailable. Fallback simulated analyzer is fully active!');
     }
   };
 
@@ -434,6 +443,24 @@ export default function GameView() {
         </div>
 
       </div>
+
+      {cameraError && (
+        <div className="fixed bottom-6 left-1/2 -translate-x-1/2 md:left-auto md:right-6 md:translate-x-0 z-50 animate-in fade-in slide-in-from-bottom-4 duration-300">
+          <div className="bg-black/95 border-2 border-red-500/40 text-white font-mono text-[10px] tracking-wider px-4 py-3 rounded-xl shadow-2xl flex items-center gap-3 backdrop-blur max-w-sm">
+            <span className="w-2 h-2 rounded-full bg-red-500 animate-ping shrink-0" />
+            <div className="space-y-0.5">
+              <span className="text-red-400 font-black uppercase block">SYS_CAMERA_ALERT:</span>
+              <span className="text-white/80 font-sans font-light text-xs leading-normal">{cameraError}</span>
+            </div>
+            <button 
+              onClick={() => setCameraError(null)} 
+              className="text-white/40 hover:text-white shrink-0 ml-2"
+            >
+              <X className="w-3.5 h-3.5" />
+            </button>
+          </div>
+        </div>
+      )}
 
     </div>
   );

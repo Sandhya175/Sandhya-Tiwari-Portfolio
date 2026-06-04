@@ -204,7 +204,7 @@ export default function ContactView() {
 
           <div className="space-y-2.5">
             {[
-              { label: 'GITHUB CHANNELS', value: '@Sandhya17', url: 'https://github.com/Sandhya175', icon: Github },
+              { label: 'GITHUB CHANNELS', value: '@Sandhya175', url: 'https://github.com/Sandhya175', icon: Github },
               { label: 'LINKEDIN PORTAL', value: 'Sandhya Tiwari', url: 'https://www.linkedin.com/in/sandhya-tiwari1752005/', icon: Linkedin },
               { label: 'DIRECT TRANSMIT EMAIL', value: 'sandhyatiwari1755@gmail.com', url: 'mailto:sandhyatiwari1755@gmail.com', icon: Mail }
             ].map((soc, idx) => {

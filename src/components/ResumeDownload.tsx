@@ -44,8 +44,8 @@ export default function ResumeDownload({ isOpen, onClose }: ResumeDownloadProps)
       const resumeContent = `
 SANDHYA TIWARI
 Frontend Developer | React Systems Developer | BSc Information Technology Student
-Email: sandhyatiwari1755@gmail.com | GitHub: https://github.com/sandhyatiwari1755
-LinkedIn: https://www.linkedin.com/in/sandhya-tiwari-935a4b2a8
+Email: sandhyatiwari1755@gmail.com | GitHub: https://github.com/Sandhya175
+LinkedIn: https://www.linkedin.com/in/sandhya-tiwari1752005/
 
 =========================================
 TECHNICAL ARCHITECTURE & SKILLS
