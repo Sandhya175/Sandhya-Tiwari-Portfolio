@@ -19,7 +19,7 @@ export default function PlexusAvatar() {
 
   // Multiple image source attempts to bulletproof image loading
   const imageSources = [
-    '/assets/Sandhya Portfolio image.png',
+    '/assets/Sandhya_portfolio_image.png',
     '/assets/sandhya_portfolio_image.png',
     '/assets/sandhya.png',
     // Fallback to the known working hosted portrait we located via grep

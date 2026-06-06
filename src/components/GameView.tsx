@@ -3,7 +3,7 @@ import { FilesetResolver, HandLandmarker, DrawingUtils } from '@mediapipe/tasks-
 import { Loader2, RotateCcw, Trophy, Hand, Timer, ListOrdered, ArrowRight, User, Star, Wifi, WifiOff, X } from 'lucide-react';
 
 // --- FIREBASE IMPORTS ---
-import { initializeApp } from 'firebase/app';
+import { initializeApp, getApps, getApp } from 'firebase/app';
 import { getAuth, signInAnonymously, onAuthStateChanged, signInWithCustomToken, User as FirebaseUser } from 'firebase/auth';
 import { getFirestore, collection, addDoc, onSnapshot } from 'firebase/firestore';
 
@@ -24,7 +24,7 @@ const safeFirebaseConfig = firebaseConfig && firebaseConfig.apiKey ? firebaseCon
   appId: "1:1234567890:web:1234567890"
 };
 
-const app = initializeApp(safeFirebaseConfig);
+const app = getApps().length > 0 ? getApp() : initializeApp(safeFirebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 

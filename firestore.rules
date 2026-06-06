@@ -31,6 +31,27 @@ service cloud.firestore {
         && data.date is number;
     }
 
+    // Helper to validate ContactTransmission schema
+    function isValidContactTransmission(data) {
+      return data.keys().hasAll(['name', 'email', 'message', 'timestamp'])
+        && data.keys().size() == 4
+        && data.name is string
+        && data.name.size() > 0
+        && data.name.size() <= 100
+        && data.email is string
+        && data.email.size() > 0
+        && data.email.size() <= 100
+        && data.message is string
+        && data.message.size() > 0
+        && data.message.size() <= 5000;
+    }
+
+    // Match rules for contacts collection
+    match /contacts/{contactId} {
+      allow create: if isValidId(contactId) && isValidContactTransmission(incoming());
+      allow read, update, delete: if false;
+    }
+
     // Match rules for artifacts path
     match /artifacts/{appId} {
       allow read: if isValidId(appId);

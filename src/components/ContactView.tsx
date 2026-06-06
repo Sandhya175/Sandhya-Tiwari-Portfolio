@@ -13,6 +13,8 @@ import {
 } from 'lucide-react';
 import { ContactForm } from '../types';
 import { sysSynth } from '../utils/audio';
+import { db } from '../lib/firebase';
+import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 
 export default function ContactView() {
   const [form, setForm] = useState<ContactForm>({ name: '', email: '', message: '' });
@@ -28,7 +30,7 @@ export default function ContactView() {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     sysSynth.playBeep(650, 0.05, 'sine');
 
@@ -56,12 +58,53 @@ export default function ContactView() {
 
     setStatus('submitting');
     
-    // Simulating secure token dispatch stream
-    setTimeout(() => {
+    try {
+      // 1. Persist the transmission log into Firestore
+      await addDoc(collection(db, 'contacts'), {
+        name: form.name.trim(),
+        email: form.email.trim(),
+        message: form.message.trim(),
+        timestamp: serverTimestamp()
+      });
+
+      // 2. Prepare mailto action to directly address to her email
+      const subject = encodeURIComponent(`Digital Portfolio Transmission: Message from ${form.name}`);
+      const body = encodeURIComponent(
+        `SYSTEM LOG: SECURED IN-APP PORTFOLIO MESSAGE DISPATCH\n` +
+        `===================================================\n` +
+        `FROM: ${form.name}\n` +
+        `EMAIL: ${form.email}\n` +
+        `TIMESTAMP: ${new Date().toUTCString()}\n` +
+        `===================================================\n\n` +
+        `TRANSMISSION CONTENT REPORT:\n` +
+        `"${form.message}"\n\n` +
+        `---------------------------------------------------\n` +
+        `Sent via secure dispatch from Sandhya Tiwari's Digital Portfolio.`
+      );
+      
+      // Delay slightly for visual effect then route to mail client
+      setTimeout(() => {
+        sysSynth.playSuccess();
+        setStatus('success');
+        setForm({ name: '', email: '', message: '' });
+        // Trigger default mail recipient stream
+        window.location.href = `mailto:sandhyatiwari1755@gmail.com?subject=${subject}&body=${body}`;
+      }, 1000);
+
+    } catch (err: any) {
+      console.error('Firestore storage failed:', err);
+      // Fallback: trigger email dispatch even if Firestore throws schema rules or connection alerts
+      const subject = encodeURIComponent(`Digital Portfolio Transmission (Fallback): Message from ${form.name}`);
+      const body = encodeURIComponent(
+        `FROM: ${form.name}\n` +
+        `EMAIL: ${form.email}\n\n` +
+        `MESSAGE:\n${form.message}`
+      );
       sysSynth.playSuccess();
       setStatus('success');
       setForm({ name: '', email: '', message: '' });
-    }, 1800);
+      window.location.href = `mailto:sandhyatiwari1755@gmail.com?subject=${subject}&body=${body}`;
+    }
   };
 
   return (

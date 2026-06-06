@@ -40,71 +40,12 @@ export default function ResumeDownload({ isOpen, onClose }: ResumeDownloadProps)
 
   const triggerPhysicalFileDownload = () => {
     try {
-      // Build a local mockup developer resume blob data securely
-      const resumeContent = `
-SANDHYA TIWARI
-Frontend Developer | React Systems Developer | BSc Information Technology Graduate
-Email: sandhyatiwari1755@gmail.com | GitHub: https://github.com/Sandhya175
-LinkedIn: https://www.linkedin.com/in/sandhya-tiwari1752005/
-
-=========================================
-TECHNICAL ARCHITECTURE & SKILLS
-=========================================
-Frontend Stacks: React, JavaScript, HTML5, CSS3, Tailwind CSS, SCSS
-Backend Systems: Node.js, Express, Microservices
-Databases: MySQL
-Programming: Python, Java, C, C++, Algorithms
-Utilities: Git, GitHub, Linux, Visual Studio Code
-
-=========================================
-PROFESSIONAL EXPERIENCE
-=========================================
-Web Developer Intern
-Talent Corner HR Services | 2023 - Present
-- Formulated modular interfaces using React and optimized Core Web Vitals parameters.
-- Structured asynchronous communication protocols safely using catch error handling.
-- Integrated adaptive Tailwind classes reducing layouts transport file overhead.
-
-=========================================
-FEATURED SOFTWARE DEPLOYMENTS
-=========================================
-1. Scanalyzer™ Health Report Analyzer  
-   React, Node.js, Express, MySQL, Gemini SDK  
-   Processed medical lab outputs using deep Optical Character Recognition parsing.
-
-2. Real-Time Gesture Translator  
-   Python, OpenCV, TensorFlow, Machine Learning, React  
-   accessibility translate app converting CAM streams into speech synth audio.
-
-3. Ether Recycle Pulse (E-Waste Monitor)  
-   React, Javascript, CSS Grid, GitHub telemetry  
-   Visualized e-waste emission metrics with community report tracking maps.
-
-=========================================
-HONORS & ACADEMIC CREDITS
-=========================================
-- CGPA Academic Elite: 9.10
-- Avishkar Science Competition State Zonal Finalist (2024)
-- Algorithm Sprint Code Execution Gold Champion (2023)
-- Member of International Science Conference Organizing Core Team (2023)
-
-=========================================
-STUDENT COORDINATIONS & COGNITIVE SKILLS
-=========================================
-- Vibes Cultural Festival Core Scheduler Coordinator  
-- Stage Acoustic Director for spot cultural singing panels  
-- Inter-collegiate Hospitality Representative Core Associate
-      `;
-
-      const blob = new Blob([resumeContent], { type: 'text/plain' });
-      const url = URL.createObjectURL(blob);
       const link = document.createElement('a');
-      link.href = url;
-      link.download = 'Sandhya_Tiwari_Resume.txt';
+      link.href = '/assets/Sandhya Tiwari Resume.pdf';
+      link.download = 'Sandhya_Tiwari_Resume.pdf';
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
-      URL.revokeObjectURL(url);
     } catch (err) {
       // Ignored safely
     }
@@ -161,7 +102,7 @@ STUDENT COORDINATIONS & COGNITIVE SKILLS
           </div>
 
           <p className="text-[10px] text-white/50 font-sans leading-relaxed">
-            Downloading <strong className="text-white">Sandhya_Tiwari_Resume.txt</strong> to your client device. Standard structural profile synced perfectly.
+            Downloading <strong className="text-white">Sandhya_Tiwari_Resume.pdf</strong> to your client device. Standard structural profile synced perfectly.
           </p>
 
           <button 

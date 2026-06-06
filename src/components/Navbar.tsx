@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Search, Bell, Settings, Radio, Cpu, Smartphone, ShieldCheck } from 'lucide-react';
+import { Search, Bell, Settings, Radio, Cpu, Smartphone, ShieldCheck, User } from 'lucide-react';
 import { TabType } from '../types';
 import { sysSynth } from '../utils/audio';
 
@@ -111,7 +111,7 @@ export default function Navbar({
 
           {/* Overlays / Popovers */}
           {showNotificationOverlay && (
-            <div className="absolute right-0 mt-3 w-80 glass-panel-heavy p-4 rounded-xl border border-white/10 shadow-2xl z-50 animate-in fade-in slide-in-from-top-2 duration-300">
+            <div className="absolute right-0 mt-3 w-80 bg-[#07030e]/95 backdrop-blur-xl p-4 rounded-xl border-2 border-[#ccff00]/30 shadow-[0_0_30px_rgba(204,255,0,0.15)] z-50 animate-in fade-in slide-in-from-top-2 duration-300">
               <div className="flex items-center justify-between pb-3 mb-3 border-b border-white/5">
                 <span className="text-[10px] font-mono tracking-widest text-[#ccff00] font-bold">
                   CORE SYSTEMS ALERTS
@@ -143,20 +143,16 @@ export default function Navbar({
           )}
         </div>
 
-        {/* Profile Avatar Link */}
+        {/* User Icon Circle Beside Notification */}
         <div 
           onClick={() => {
             sysSynth.playBeep(500, 0.05);
             setActiveTab('about');
           }}
-          className="w-8 h-8 rounded-full overflow-hidden border border-[#ccff00]/30 hover:border-[#ccff00]/80 transition-all cursor-pointer shadow-glow-lime hover:scale-105"
+          className="w-8 h-8 rounded-full bg-[#120524] border border-[#ccff00]/30 hover:border-[#ccff00]/80 transition-all cursor-pointer shadow-glow-lime hover:scale-105 flex items-center justify-center text-[#ccff00] hover:text-white"
+          title="Developer Profile"
         >
-          <img 
-            alt="Sandhya Tiwari" 
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBtNqkdHOBENf5YppjXawuRZl6OPt0HbvDC1PPSAEsogKe_8ywl38VWZO-A0CEabprDG6blETM5sso99mYT88U5ByKqwl28K5UCHh7RCJQnPUUfPZqm4sA2VLFz_PXT3RRnt1T954CdeoZLJ8yGWhP_NzqDuIw3ZZw1MJ7-7vyccdooc_amtZ2wM7FhmwnD5UEkffmTO0PNFqeh2HiZpkxZE1qv5Je8d82SUwKUmMiyIAuRjqKpH_1vyU5MR8xFldnguh3k5rYwDdg" 
-            referrerPolicy="no-referrer"
-            className="w-full h-full object-cover"
-          />
+          <User className="w-4 h-4" />
         </div>
       </div>
     </header>
