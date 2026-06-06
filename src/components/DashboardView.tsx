@@ -14,7 +14,11 @@ import {
   Terminal,
   Layers,
   Award,
-  Filter
+  Filter,
+  BookOpen,
+  UserCheck,
+  Shield,
+  Heart
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { TabType, Project } from '../types';
@@ -93,12 +97,19 @@ export default function DashboardView({ setActiveTab, openProjectDetails, search
       </div>
 
       {/* Primary Dynamic Counter Stats */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         {[
-          { label: 'ENGINE COMMIT LOGS', value: commits, icon: Terminal, color: 'text-[#ccff00]', bg: 'bg-[#ccff00]/5' },
-          { label: 'ACADEMIC METRIC CGPA', value: '9.10 / 10', icon: Award, color: 'text-[#e3b5ff]', bg: 'bg-purple-500/5' },
-          { label: 'SYSTEM DIAGNOSTICS UPTIME', value: `${uptime}%`, icon: Clock, color: 'text-cyan-400', bg: 'bg-cyan-500/5' },
-          { label: 'ACTIVE PORTFOLIO PROJECT METRICS', value: PROJECTS_DATA.length, icon: Workflow, color: 'text-[#ccff00]', bg: 'bg-lime-500/5' }
+          { label: 'PROJECTS BUILT', value: '11+', icon: Workflow, color: 'text-[#ccff00]' },
+          { label: 'CERTIFICATIONS', value: '20+', icon: Award, color: 'text-[#e3b5ff]' },
+          { label: 'INTERNSHIPS', value: '2', icon: Layers, color: 'text-emerald-400' },
+          { label: 'TEAM MEMBERS MANAGED', value: '25+', icon: UserCheck, color: 'text-cyan-400' },
+          { label: 'PUBLISHED RESEARCH PAPERS', value: '1', icon: BookOpen, color: 'text-purple-400' },
+          { label: 'ONGOING RESEARCH STUDY', value: '1', icon: Brain, color: 'text-[#a5eff3]' },
+          { label: 'CUMULATIVE CGPI', value: '8.92', icon: CheckCircle, color: 'text-cyan-500' },
+          { label: 'LEADERSHIP ROLES', value: '4+', icon: Shield, color: 'text-amber-400' },
+          { label: 'COMMUNITY SERVICE HOURS', value: '120+ Hrs', icon: Heart, color: 'text-pink-400' },
+          { label: 'AVISHKAR ZONAL FINALIST', value: 'Qualified', icon: TrendingUp, color: 'text-[#ffd8b4]' },
+          { label: 'GUINNESS WORLD RECORD', value: 'Participant', icon: Sparkles, color: 'text-amber-300' }
         ].map((stat, i) => (
           <div 
             key={i} 
@@ -215,58 +226,122 @@ export default function DashboardView({ setActiveTab, openProjectDetails, search
 
           <div className="grid grid-cols-3 gap-2 mt-2 pt-2 border-t border-white/5">
             <div className="text-center p-2 rounded bg-white/[0.01]">
-              <div className="text-[10px] font-mono text-white/40">COMMIT_VELOCITY</div>
-              <div className="text-sm font-headline font-bold text-white">+84%</div>
+              <div className="text-[10px] font-mono text-white/40">TOTAL_PROJECTS</div>
+              <div className="text-sm font-headline font-bold text-[#ccff00]">11+ Built</div>
             </div>
             <div className="text-center p-2 rounded bg-white/[0.01]">
-              <div className="text-[10px] font-mono text-white/40">AVG_COMP_SCORE</div>
-              <div className="text-sm font-headline font-bold text-[#ccff00]">9.8 / 10</div>
+              <div className="text-[10px] font-mono text-white/40">CERTIFICATIONS</div>
+              <div className="text-sm font-headline font-bold text-white">20+ Verified</div>
             </div>
             <div className="text-center p-2 rounded bg-white/[0.01]">
-              <div className="text-[10px] font-mono text-white/40">REACT_RUN_HRS</div>
-              <div className="text-sm font-headline font-bold text-purple-400">1,820 H</div>
+              <div className="text-[10px] font-mono text-white/40">RESEARCH_PAPERS</div>
+              <div className="text-sm font-headline font-bold text-purple-400">1 Published</div>
             </div>
           </div>
         </div>
 
-        {/* Widget: Roadmap tracker */}
-        <div className="p-5 rounded-2xl glass-panel border border-white/5 flex flex-col justify-between">
-          <div className="space-y-4">
-            <div className="flex items-center justify-between border-b border-white/5 pb-3">
-              <div className="flex items-center gap-2">
-                <Brain className="w-4 h-4 text-purple-400 animate-pulse" />
-                <h2 className="text-xs font-mono font-black tracking-widest text-white uppercase">
-                  ROADMAP & TARGETS
-                </h2>
+        {/* Column 3 containing both "Now Building" and "Roadmap tracker" */}
+        <div className="space-y-6 flex flex-col justify-between">
+          
+          {/* Widget: Now Building (Current Mission) */}
+          <div className="p-5 rounded-2xl bg-gradient-to-br from-purple-950/20 to-black/80 border border-purple-500/10 shadow-[0_0_20px_rgba(148,0,228,0.05)] relative overflow-hidden flex-1 flex flex-col justify-between min-h-[140px] hover:border-purple-500/30 transition-all">
+            <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-purple-500/10 to-transparent blur-2xl pointer-events-none" />
+            
+            <div>
+              <div className="flex items-center justify-between border-b border-white/5 pb-2.5 mb-3.5">
+                <div className="flex items-center gap-2">
+                  <span className="relative flex h-2 w-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-purple-500"></span>
+                  </span>
+                  <h2 className="text-[10px] font-mono font-black tracking-widest text-[#e3b5ff] uppercase">
+                    CURRENT MISSION: NOW BUILDING
+                  </h2>
+                </div>
+                <span className="text-[8px] font-mono text-purple-300 bg-purple-500/10 border border-purple-500/20 px-1.5 py-0.5 rounded uppercase font-bold tracking-wider">
+                  R&D PHASE
+                </span>
               </div>
-              <span className="text-[8px] font-mono text-[#ccff00] bg-[#ccff00]/10 border border-[#ccff00]/30 px-1.5 py-0.5 rounded">
-                LEARNING
-              </span>
-            </div>
 
-            <div className="space-y-3.5">
-              {filteredRoadmap.map((item, id) => (
-                <div key={id} className="space-y-1.5 p-2.5 rounded-lg bg-black/40 border border-white/5 hover:border-white/10 transition-colors">
-                  <div className="flex items-center justify-between">
-                    <span className="text-[11px] font-headline font-bold text-white">{item.title}</span>
-                    <span className="text-[9px] font-mono text-[#ccff00]">{item.progress}%</span>
+              <div className="space-y-3.5">
+                <div>
+                  <span className="text-[8px] font-mono text-zinc-500 uppercase block leading-none mb-1">Mission Identifier</span>
+                  <h3 className="text-xs font-headline font-black text-white uppercase tracking-tight">
+                    Scanalyzer AI
+                  </h3>
+                </div>
+
+                <div className="space-y-1.5">
+                  <div className="flex items-center justify-between text-[10px] font-mono">
+                    <span className="text-zinc-400">RESEARCH PROGRESS</span>
+                    <span className="text-[#ccff00] font-black">72%</span>
                   </div>
-                  <div className="w-full bg-white/5 h-1 rounded-full overflow-hidden">
+                  <div className="w-full bg-white/5 h-1.5 rounded-full overflow-hidden border border-white/5 shadow-inner">
                     <div 
-                      className={`h-full ${item.status === 'active' ? 'bg-[#ccff00]' : item.status === 'learning' ? 'bg-purple-500' : 'bg-white/10'}`}
-                      style={{ width: `${item.progress}%`, transition: 'width 1.5s cubic-bezier(0.16, 1, 0.3, 1)' }}
+                      className="h-full bg-gradient-to-r from-purple-500 to-[#ccff00] rounded-full"
+                      style={{ width: '72%' }}
                     />
                   </div>
-                  <p className="text-[9px] text-white/40 font-mono tracking-tight leading-relaxed">{item.topic}</p>
                 </div>
-              ))}
+
+                <div className="grid grid-cols-2 gap-3 pt-1 text-[10px] font-mono">
+                  <div>
+                    <span className="text-zinc-500 uppercase block text-[7.5px] mb-0.5">Focus Domain</span>
+                    <span className="text-white/80 font-medium">Medical Intelligence</span>
+                  </div>
+                  <div>
+                    <span className="text-zinc-500 uppercase block text-[7.5px] mb-0.5">Target Release</span>
+                    <span className="text-[#ccff00] font-bold">2026 // EST</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="pt-2 border-t border-white/5 mt-3 text-[7.5px] font-mono text-white/30 uppercase tracking-widest leading-none flex justify-between">
+              <span>DB_TRACK: SCAN_AI_NODE</span>
+              <span>SYS_NOMINAL_ON</span>
             </div>
           </div>
 
-          <div className="pt-4 border-t border-white/5 mt-4">
-            <div className="flex items-center justify-between text-[9px] font-mono text-white/30">
-              <span>DB_REF: ROADMAP_SQL</span>
-              <span>SECURE_SHELL</span>
+          {/* Widget: Roadmap tracker */}
+          <div className="p-5 rounded-2xl glass-panel border border-white/5 flex flex-col justify-between">
+            <div className="space-y-4">
+              <div className="flex items-center justify-between border-b border-[#ffffff10] pb-3">
+                <div className="flex items-center gap-2">
+                  <Brain className="w-4 h-4 text-purple-400 animate-pulse" />
+                  <h2 className="text-xs font-mono font-black tracking-widest text-white uppercase">
+                    ROADMAP & TARGETS
+                  </h2>
+                </div>
+                <span className="text-[8px] font-mono text-[#ccff00] bg-[#ccff00]/10 border border-[#ccff00]/30 px-1.5 py-0.5 rounded">
+                  LEARNING
+                </span>
+              </div>
+
+              <div className="space-y-3.5">
+                {filteredRoadmap.map((item, id) => (
+                  <div key={id} className="space-y-1.5 p-2.5 rounded-lg bg-black/40 border border-white/5 hover:border-white/10 transition-colors">
+                    <div className="flex items-center justify-between">
+                      <span className="text-[11px] font-headline font-bold text-white">{item.title}</span>
+                      <span className="text-[9px] font-mono text-[#ccff00]">{item.progress}%</span>
+                    </div>
+                    <div className="w-full bg-white/5 h-1 rounded-full overflow-hidden">
+                      <div 
+                        className={`h-full ${item.status === 'active' ? 'bg-[#ccff00]' : item.status === 'learning' ? 'bg-purple-500' : 'bg-white/10'}`}
+                        style={{ width: `${item.progress}%`, transition: 'width 1.5s cubic-bezier(0.16, 1, 0.3, 1)' }}
+                      />
+                    </div>
+                    <p className="text-[9px] text-white/40 font-mono tracking-tight leading-relaxed">{item.topic}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="pt-4 border-t border-white/5 mt-4">
+              <div className="flex items-center justify-between text-[9px] font-mono text-white/30">
+                <span>DB_REF: ROADMAP_SQL</span>
+                <span>SECURE_SHELL</span>
+              </div>
             </div>
           </div>
         </div>

@@ -23,6 +23,9 @@ import ProjectsView from './components/ProjectsView';
 import GameView from './components/GameView';
 import SkillsView from './components/SkillsView';
 import ExperienceView from './components/ExperienceView';
+import EducationView from './components/EducationView';
+import AchievementsView from './components/AchievementsView';
+import PublicationsView from './components/PublicationsView';
 import LeadershipView from './components/LeadershipView';
 import ContactView from './components/ContactView';
 import ResumeDownload from './components/ResumeDownload';
@@ -181,7 +184,9 @@ export default function App() {
               { id: 'game', label: 'GESTURE LAB' },
               { id: 'skills', label: 'SKILLS Matrix' },
               { id: 'experience', label: 'TIMELINE' },
+              { id: 'education', label: 'EDUCATION' },
               { id: 'achievements', label: 'HONORS' },
+              { id: 'publications', label: 'PUBLICATIONS' },
               { id: 'leadership', label: 'LEADERSHIP' },
               { id: 'contact', label: 'DIRECT_LINE' }
             ].map((nav) => (
@@ -335,7 +340,7 @@ export default function App() {
                     <span>•</span>
                     <span>React Developer</span>
                     <span>•</span>
-                    <span>BSc Information Technology Student</span>
+                    <span>BSc Information Technology Graduate</span>
                   </p>
                 </div>
 
@@ -425,7 +430,7 @@ export default function App() {
 
           {/* VIEW: COMPOSITE SKILLS TARGETS */}
           {activeTab === 'skills' && (
-            <SkillsView />
+            <SkillsView searchQuery={searchQuery} />
           )}
 
           {/* VIEW: EXPERIENCE HISTORIES */}
@@ -433,9 +438,19 @@ export default function App() {
             <ExperienceView />
           )}
 
+          {/* VIEW: EDUCATION HISTORY & HIGHLIGHTS */}
+          {activeTab === 'education' && (
+            <EducationView />
+          )}
+
           {/* VIEW: ACADEMIC CREDITS & HONORS */}
           {activeTab === 'achievements' && (
-            <ExperienceView /> 
+            <AchievementsView searchQuery={searchQuery} /> 
+          )}
+
+          {/* VIEW: RESEARCH & PUBLICATIONS */}
+          {activeTab === 'publications' && (
+            <PublicationsView />
           )}
 
           {/* VIEW: LEADERSHIP COORDINATION CODES */}

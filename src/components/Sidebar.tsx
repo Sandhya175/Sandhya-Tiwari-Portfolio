@@ -13,7 +13,9 @@ import {
   VolumeX, 
   Download,
   Settings,
-  Cpu
+  Cpu,
+  BookOpen,
+  GraduationCap
 } from 'lucide-react';
 import { TabType } from '../types';
 import { sysSynth } from '../utils/audio';
@@ -34,7 +36,9 @@ export default function Sidebar({ activeTab, setActiveTab, triggerResumeDownload
     { id: 'game', label: 'Gesture Lab', icon: Gamepad2, badge: 'NEW' },
     { id: 'skills', label: 'Skills', icon: Brain },
     { id: 'experience', label: 'Experience', icon: Briefcase },
+    { id: 'education', label: 'Education', icon: GraduationCap },
     { id: 'achievements', label: 'Achievements', icon: Trophy },
+    { id: 'publications', label: 'Publications', icon: BookOpen },
     { id: 'leadership', label: 'Leadership', icon: Target },
     { id: 'contact', label: 'Contact', icon: Mail },
   ];

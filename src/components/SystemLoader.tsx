@@ -20,6 +20,7 @@ export default function SystemLoader({ targetTab }: SystemLoaderProps) {
       case 'game': return 'GESTURE_INTERFACE_LABORATORY';
       case 'skills': return 'INTELLIGENT_MATRIX_COMPILER';
       case 'experience': return 'HISTORIC_TIMELINE_SEQUENCER';
+      case 'education': return 'ACADEMIC_TIMELINE_SEQUENCER';
       case 'achievements': return 'ACADEMIC_HONORS_CREDITS';
       case 'leadership': return 'COORDINATION_LOGISTICS_CONSOLE';
       case 'contact': return 'CLIENT_PORTAL_COMMUNICATION_LINK';

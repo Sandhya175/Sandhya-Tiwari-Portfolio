@@ -6,7 +6,9 @@ export type TabType =
   | 'game'
   | 'skills'
   | 'experience'
+  | 'education'
   | 'achievements'
+  | 'publications'
   | 'leadership'
   | 'contact';
 
@@ -23,6 +25,7 @@ export interface Project {
   githubUrl?: string;
   caseStudyUrl?: string; // Links to case study details overlay
   stats?: { label: string; value: string }[];
+  impactMetrics?: string[];
 }
 
 export interface Achievement {
@@ -34,6 +37,17 @@ export interface Achievement {
   icon: string;
   gradient: string;
   animationDelay: number;
+}
+
+export interface CertificateItem {
+  id: string;
+  title: string;
+  issuer: string;
+  date: string;
+  credentialId?: string;
+  skills?: string[];
+  fileName?: string;
+  category: string;
 }
 
 export interface LeadershipActivity {

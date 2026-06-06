@@ -1,0 +1,52 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // 1. Global safety net default-deny catch-all
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Core primitive validation helpers
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    // Helper to validate LeaderboardEntry schema
+    function isValidLeaderboardEntry(data) {
+      return data.keys().hasAll(['name', 'time', 'date']) 
+        && data.keys().size() == 3
+        && data.name is string 
+        && data.name.size() > 0 
+        && data.name.size() <= 32
+        && data.time is number 
+        && data.time >= 0
+        && data.date is number;
+    }
+
+    // Match rules for artifacts path
+    match /artifacts/{appId} {
+      allow read: if isValidId(appId);
+      
+      match /public/data/leaderboard/{leaderboardId} {
+        // Anyone can read (get or list) public high scores
+        allow read: if isValidId(appId);
+
+        // Creating scores is anonymous but must conform to strict schema and ID structure
+        allow create: if isValidId(appId)
+          && isValidId(leaderboardId) 
+          && isValidLeaderboardEntry(incoming());
+
+        // Update and delete are forbidden on submitted score entries to preserve competition integrity
+        allow update, delete: if false;
+      }
+    }
+  }
+}

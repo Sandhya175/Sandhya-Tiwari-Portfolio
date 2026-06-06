@@ -43,7 +43,7 @@ export default function ResumeDownload({ isOpen, onClose }: ResumeDownloadProps)
       // Build a local mockup developer resume blob data securely
       const resumeContent = `
 SANDHYA TIWARI
-Frontend Developer | React Systems Developer | BSc Information Technology Student
+Frontend Developer | React Systems Developer | BSc Information Technology Graduate
 Email: sandhyatiwari1755@gmail.com | GitHub: https://github.com/Sandhya175
 LinkedIn: https://www.linkedin.com/in/sandhya-tiwari1752005/
 

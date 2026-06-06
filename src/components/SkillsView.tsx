@@ -18,7 +18,11 @@ const ORBIT_SKILLS = [
   { name: 'GitHub', level: 95, category: 'tools' }
 ];
 
-export default function SkillsView() {
+interface SkillsViewProps {
+  searchQuery?: string;
+}
+
+export default function SkillsView({ searchQuery = '' }: SkillsViewProps) {
   const [activeCategory, setActiveCategory] = useState<'all' | 'frontend' | 'backend' | 'database' | 'programming' | 'tools'>('all');
   
   // 3D Orbit state machines
@@ -113,9 +117,13 @@ export default function SkillsView() {
     setActiveCategory(cat);
   };
 
-  const filteredSkills = SKILLS_DATA.filter(skill => 
-    activeCategory === 'all' || skill.category === activeCategory
-  );
+  const filteredSkills = SKILLS_DATA.filter(skill => {
+    const matchesCategory = activeCategory === 'all' || skill.category === activeCategory;
+    const matchesSearch = searchQuery === '' || 
+                          skill.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                          skill.category.toLowerCase().includes(searchQuery.toLowerCase());
+    return matchesCategory && matchesSearch;
+  });
 
   return (
     <div id="skills-matrix-panel" className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
