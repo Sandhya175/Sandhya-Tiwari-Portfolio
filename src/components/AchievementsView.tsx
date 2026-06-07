@@ -93,6 +93,14 @@ const GROUPED_CERTIFICATES: GroupedCertificate[] = [
     )
   },
   {
+    id: 'group_mvlu_hackathon',
+    title: 'MVLU Hackathon Innovation',
+    category: 'Programming',
+    certificates: CERTIFICATES_DATA.filter(c => 
+      ['cert_mvlu_hackathon_2025'].includes(c.id)
+    )
+  },
+  {
     id: 'group_tcs',
     title: 'TCS Professional Development',
     category: 'Communication',

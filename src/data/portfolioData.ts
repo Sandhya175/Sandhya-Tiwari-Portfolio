@@ -706,6 +706,15 @@ export const CERTIFICATES_DATA: CertificateItem[] = [
     category: 'Arts / Leadership',
     fileName: 'host-of-glimpses-on-intellectual-property-rights.jpg',
     skills: ['Anchoring & Host Protocols', 'Stage Management Coordination', 'Dialogue Moderation']
+  },
+  {
+    id: 'cert_mvlu_hackathon_2025',
+    title: 'MVLU Hackathon 2025 Participation Certificate',
+    issuer: 'Sheth L.U.J. College & Sir M.V. College',
+    date: '2025',
+    category: 'Innovation & Hackathon',
+    fileName: 'mvlu-hackathon-2025-certificate.jpeg',
+    skills: ['Problem Solving', 'Team Collaboration', 'Innovation Development', 'Technical Implementation']
   }
 ];
 
