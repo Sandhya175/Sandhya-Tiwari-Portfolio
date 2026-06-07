@@ -1,20 +1,149 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://ai.google.dev/static/site-assets/images/share-ais-513315318.png" />
-</div>
+# 👩‍💻 Sandhya Tiwari Portfolio
 
-# Run and deploy your AI Studio app
+A modern cyberpunk-inspired developer portfolio showcasing my projects, technical skills, certifications, achievements, publications, leadership experience, and contact information.
 
-This contains everything you need to run your app locally.
+## 📸 Preview
 
-View your app in AI Studio: https://ai.studio/apps/b3ca2dbe-6442-4182-9577-39d3fd761e1d
+![Portfolio Preview](public/assets/portfolio-preview.png)
 
-## Run Locally
+🌐 Live Website: https://sandhya-tiwari-portfolio.vercel.app
 
-**Prerequisites:**  Node.js
+---
 
+## 🚀 Features
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+- Interactive Cyberpunk UI
+- Responsive Design
+- Project Showcase
+- Skills Dashboard
+- Experience Timeline
+- Education Section
+- Certifications & Achievements
+- Research Publications
+- Leadership Activities
+- Resume Download
+- Contact Form with EmailJS Integration
+- Firebase Firestore Contact Logging
+- Google Analytics Tracking
+
+---
+
+## 🛠️ Tech Stack
+
+### Frontend
+
+- React.js
+- TypeScript
+- Vite
+- Tailwind CSS
+
+### Backend Services
+
+- Firebase Firestore
+- EmailJS
+
+### Analytics
+
+- Google Analytics 4
+
+### Deployment
+
+- Vercel
+
+---
+
+## 📂 Sections
+
+### Dashboard
+
+Introduction and quick overview.
+
+### About
+
+Personal profile and career summary.
+
+### Projects
+
+Featured development projects including:
+
+- FinTrack Expense Tracker
+- Trippy Go
+- Scafe
+- AI-Based Health Report Analyzer
+- Investment Portfolio Management System
+
+### Skills
+
+Technical skills and technologies.
+
+### Experience
+
+Internships and professional experience.
+
+### Education
+
+Academic qualifications and achievements.
+
+### Achievements
+
+Certifications, hackathons, competitions, research presentations, and awards.
+
+### Publications
+
+Research papers and academic publications.
+
+### Leadership
+
+Event coordination, volunteering, and leadership roles.
+
+### Contact
+
+Direct contact form powered by EmailJS.
+
+---
+
+## 📸 Preview
+
+![Portfolio Preview](public/assets/portfolio-preview-1.png)
+
+---
+
+## 📊 Certifications & Achievements
+
+- Aavishkar Research Convention Final Round
+- Aavishkar Zonal Round Winner
+- Coding Execution Championship
+- Microsoft 365 Copilot
+- Prompt Engineering
+- CMCA Workshop
+- IIBA Participation
+- Guinness World Record Participation
+- TCS iON Career Edge
+- Project Management Institute (PMI)
+- Artificial Intelligence Workshop
+- MVLU Hackathon 2025
+- And many more
+
+---
+
+## 📄 Resume
+
+Resume can be downloaded directly from the portfolio.
+
+---
+
+## 📬 Connect With Me
+
+- LinkedIn: https://www.linkedin.com/in/sandhya-tiwari1752005/
+- GitHub: https://github.com/Sandhya175
+- Email: sandhyatiwari1755@gmail.com
+
+---
+
+## ⭐ Support
+
+If you like this portfolio, consider giving the repository a star.
+
+---
+
+Built with ❤️ by Sandhya Tiwari
