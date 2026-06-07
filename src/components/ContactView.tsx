@@ -15,10 +15,12 @@ import { ContactForm } from '../types';
 import { sysSynth } from '../utils/audio';
 import { db } from '../lib/firebase';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
+import emailjs from '@emailjs/browser';
 
 export default function ContactView() {
   const [form, setForm] = useState<ContactForm>({ name: '', email: '', message: '' });
-  const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+  const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -33,6 +35,8 @@ export default function ContactView() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     sysSynth.playBeep(650, 0.05, 'sine');
+
+    console.log("FORM SUBMIT START");
 
     // Schema Validation
     if (!form.name.trim()) {
@@ -56,54 +60,45 @@ export default function ContactView() {
       return;
     }
 
-    setStatus('submitting');
+    setLoading(true);
+    setStatus('idle');
+    setErrorMsg('');
     
     try {
-      // 1. Persist the transmission log into Firestore
-      await addDoc(collection(db, 'contacts'), {
-        name: form.name.trim(),
-        email: form.email.trim(),
-        message: form.message.trim(),
-        timestamp: serverTimestamp()
-      });
+      // 1. Try to persist the transmission log into Firestore
+      console.log("Skipping Firestore");
 
-      // 2. Prepare mailto action to directly address to her email
-      const subject = encodeURIComponent(`Digital Portfolio Transmission: Message from ${form.name}`);
-      const body = encodeURIComponent(
-        `SYSTEM LOG: SECURED IN-APP PORTFOLIO MESSAGE DISPATCH\n` +
-        `===================================================\n` +
-        `FROM: ${form.name}\n` +
-        `EMAIL: ${form.email}\n` +
-        `TIMESTAMP: ${new Date().toUTCString()}\n` +
-        `===================================================\n\n` +
-        `TRANSMISSION CONTENT REPORT:\n` +
-        `"${form.message}"\n\n` +
-        `---------------------------------------------------\n` +
-        `Sent via secure dispatch from Sandhya Tiwari's Digital Portfolio.`
-      );
-      
-      // Delay slightly for visual effect then route to mail client
-      setTimeout(() => {
-        sysSynth.playSuccess();
-        setStatus('success');
-        setForm({ name: '', email: '', message: '' });
-        // Trigger default mail recipient stream
-        window.location.href = `mailto:sandhyatiwari1755@gmail.com?subject=${subject}&body=${body}`;
-      }, 1000);
+      // 2. Transmit via EmailJS
+      console.log("Reached EmailJS section");
+      console.log("Sending Email...");
+      const templateParams = {
+        from_name: form.name.trim(),
+        from_email: form.email.trim(),
+        message: form.message.trim()
+      };
 
-    } catch (err: any) {
-      console.error('Firestore storage failed:', err);
-      // Fallback: trigger email dispatch even if Firestore throws schema rules or connection alerts
-      const subject = encodeURIComponent(`Digital Portfolio Transmission (Fallback): Message from ${form.name}`);
-      const body = encodeURIComponent(
-        `FROM: ${form.name}\n` +
-        `EMAIL: ${form.email}\n\n` +
-        `MESSAGE:\n${form.message}`
+      await emailjs.send(
+        'service_bxvw9sr',
+        'template_ojud68p',
+        templateParams,
+        'S5kQ91d62OUxmTVDW'
       );
+
+      console.log("EmailJS completed");
+      console.log("Email Sent Successfully");
       sysSynth.playSuccess();
       setStatus('success');
       setForm({ name: '', email: '', message: '' });
-      window.location.href = `mailto:sandhyatiwari1755@gmail.com?subject=${subject}&body=${body}`;
+
+    } catch (err: any) {
+      console.log("Email Failed");
+      console.error("EMAIL ERROR", err);
+      console.error("Complete error details:", err);
+      sysSynth.playError();
+      setStatus('error');
+      setErrorMsg(err?.text || err?.message || 'TRANSMISSION_FAILED: Relay failed to deliver payload.');
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -134,7 +129,7 @@ export default function ContactView() {
                 value={form.name}
                 onChange={handleChange}
                 placeholder="ENTER YOUR NAME..."
-                disabled={status === 'submitting'}
+                disabled={loading}
                 className="w-full bg-black/60 border border-white/15 focus:border-[#ccff00] focus:ring-1 focus:ring-[#ccff00]/40 rounded-xl py-2 px-3.5 text-xs text-white placeholder:text-white/20 outline-none transition-all font-mono"
               />
             </div>
@@ -150,7 +145,7 @@ export default function ContactView() {
                 value={form.email}
                 onChange={handleChange}
                 placeholder="ENTER YOUR EMAIL..."
-                disabled={status === 'submitting'}
+                disabled={loading}
                 className="w-full bg-black/60 border border-white/15 focus:border-[#ccff00] focus:ring-1 focus:ring-[#ccff00]/40 rounded-xl py-2 px-3.5 text-xs text-white placeholder:text-white/20 outline-none transition-all font-mono"
               />
             </div>
@@ -166,7 +161,7 @@ export default function ContactView() {
                 onChange={handleChange}
                 placeholder="COMPILE TRANSMISSION BODY..."
                 rows={5}
-                disabled={status === 'submitting'}
+                disabled={loading}
                 className="w-full bg-black/60 border border-white/15 focus:border-[#ccff00] focus:ring-1 focus:ring-[#ccff00]/40 rounded-xl py-2 px-3.5 text-xs text-white placeholder:text-white/20 outline-none transition-all resize-none font-mono"
               />
             </div>
@@ -176,7 +171,7 @@ export default function ContactView() {
           {status === 'success' && (
             <div className="p-3 rounded-xl bg-[#ccff00]/10 border border-[#ccff00]/30 flex items-center gap-2.5 text-[#ccff00] font-mono text-[10px]">
               <CheckCircle className="w-4 h-4 shrink-0" />
-              <span>TRANSMISSION SECURED: Message has reached Sandhya Tiwari. V1 routing log online.</span>
+              <span>Message dispatched successfully. I will get back to you soon.</span>
             </div>
           )}
 
@@ -190,10 +185,10 @@ export default function ContactView() {
           {/* Button Trigger */}
           <button
             type="submit"
-            disabled={status === 'submitting'}
+            disabled={loading}
             className="w-full py-3 bg-[#ccff00] text-black font-headline font-black text-xs rounded-xl hover:shadow-glow-lime hover:brightness-110 active:scale-98 transition-all flex items-center justify-center gap-2 group cursor-pointer disabled:opacity-55 disabled:cursor-not-allowed"
           >
-            {status === 'submitting' ? (
+            {loading ? (
               <>
                 <span className="w-4 h-4 border-2 border-black border-t-transparent rounded-full animate-spin shrink-0" />
                 <span className="font-headline tracking-widest uppercase text-[10px]">DISPATCHING SECURE TOKEN...</span>
@@ -271,8 +266,8 @@ export default function ContactView() {
                     </div>
                   </div>
 
-                  <span className="text-[10px] font-mono text-white/20 group-hover:text-white/60 transition-colors">
-                    _CONNECT
+                  <span className="text-[10px] font-mono text-[#ccff00] border border-[#ccff00]/20 rounded px-1.5 py-0.5 bg-[#ccff00]/5 text-[9px] font-bold group-hover:bg-[#ccff00] group-hover:text-black transition-colors">
+                    CONNECT
                   </span>
                 </a>
               );
