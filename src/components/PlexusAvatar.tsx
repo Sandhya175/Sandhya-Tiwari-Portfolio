@@ -19,9 +19,7 @@ export default function PlexusAvatar() {
 
   // Multiple image source attempts to bulletproof image loading
   const imageSources = [
-    '/assets/Sandhya_portfolio_image.png',
-    '/assets/sandhya_portfolio_image.png',
-    '/assets/sandhya.png',
+    '/assets/sandhya-portfolio-image.png',
     // Fallback to the known working hosted portrait we located via grep
     'https://lh3.googleusercontent.com/aida-public/AB6AXuBtNqkdHOBENf5YppjXawuRZl6OPt0HbvDC1PPSAEsogKe_8ywl38VWZO-A0CEabprDG6blETM5sso99mYT88U5ByKqwl28K5UCHh7RCJQnPUUfPZqm4sA2VLFz_PXT3RRnt1T954CdeoZLJ8yGWhP_NzqDuIw3ZZw1MJ7-7vyccdooc_amtZ2wM7FhmwnD5UEkffmTO0PNFqeh2HiZpkxZE1qv5Je8d82SUwKUmMiyIAuRjqKpH_1vyU5MR8xFldnguh3k5rYwDdg'
   ];

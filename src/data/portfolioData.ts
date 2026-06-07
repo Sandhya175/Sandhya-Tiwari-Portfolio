@@ -421,7 +421,7 @@ export const CERTIFICATES_DATA: CertificateItem[] = [
     issuer: 'University of Mumbai',
     date: '2025 - 2026',
     category: 'Research & Innovation',
-    fileName: 'Aavishkar_Students_Merit_Certificate_25-26_Zonal_Round_Winner.jpg',
+    fileName: 'aavishkar-students-merit-certificate-25-26-zonal-round-winner.jpg',
     skills: ['Sign Language Recognition', 'Human-Computer Interaction', 'Academic Research', 'Presentation']
   },
   {
@@ -430,7 +430,7 @@ export const CERTIFICATES_DATA: CertificateItem[] = [
     issuer: 'University of Mumbai',
     date: '2025 - 2026',
     category: 'Research & Innovation',
-    fileName: 'Aavishkar_Students_Participation_Certificate_25-26_removed_page-0001.jpg',
+    fileName: 'aavishkar-students-participation-certificate-25-26.jpg',
     skills: ['Scientific Method', 'Sign Language Audio Translation', 'Hardware-Software Interfacing']
   },
   {
@@ -439,7 +439,7 @@ export const CERTIFICATES_DATA: CertificateItem[] = [
     issuer: 'University of Mumbai - Aavishkar Board',
     date: '2025 - 2026',
     category: 'Official Selection',
-    fileName: 'Selection_Letter_for_Sign_Language.pdf',
+    fileName: 'selection-letter-for-sign-language.pdf',
     skills: ['Project Excellence', 'Technical Reporting', 'State NOMINATION']
   },
   {
@@ -448,7 +448,7 @@ export const CERTIFICATES_DATA: CertificateItem[] = [
     issuer: 'University of Mumbai',
     date: '2025 - 2026',
     category: 'Research & Innovation',
-    fileName: '20th_Aavishkar_Research_Convention_Final_Round.jpg',
+    fileName: '20th-aavishkar-research-convention-final-round.jpg',
     skills: ['Research Convention finalist', 'Academic Defense', 'Visual Reporting']
   },
   {
@@ -457,7 +457,7 @@ export const CERTIFICATES_DATA: CertificateItem[] = [
     issuer: 'University of Mumbai',
     date: '2025 - 2026',
     category: 'Research & Innovation',
-    fileName: '20th_Aavishkar_Research_Convention_Zonal_Round_Winner.jpg',
+    fileName: '20th-aavishkar-research-convention-zonal-round-winner.jpg',
     skills: ['Zonal Round Champion', 'Peer Review Excellence', 'Data Visualization']
   },
   {
@@ -466,7 +466,7 @@ export const CERTIFICATES_DATA: CertificateItem[] = [
     issuer: 'Guinness World Records',
     date: 'Mar 2025',
     category: 'World Record',
-    fileName: 'Guinness_World_Record.jpg',
+    fileName: 'guinness-world-record.jpg',
     skills: ['World Record Participation', 'Community Advocacy', 'Collective Impact']
   },
   {
@@ -475,7 +475,7 @@ export const CERTIFICATES_DATA: CertificateItem[] = [
     issuer: 'SHETH L.U.J AND SIR M.V. COLLEGE',
     date: 'Dec 2024',
     category: 'Generative AI',
-    fileName: 'Mastering_from_engineering.jpg',
+    fileName: 'mastering-prompt-engineering.jpg',
     skills: ['Prompt Engineering', 'Generative AI', 'LLM Querying', 'Model Alignment']
   },
   {
@@ -485,7 +485,7 @@ export const CERTIFICATES_DATA: CertificateItem[] = [
     date: 'Jul 2024',
     credentialId: '20242501',
     category: 'Academic Outreach',
-    fileName: 'Knowledge_sharing_week_2025-26.png',
+    fileName: 'knowledge-sharing-week-2025-26.png',
     skills: ['Presentation Skills', 'Group Discussion Skills', 'Technical Writing']
   },
   {
@@ -495,7 +495,7 @@ export const CERTIFICATES_DATA: CertificateItem[] = [
     date: 'Aug 2024',
     credentialId: '7aab892ffcb4071b5f398ed7a238ba97acbddd62bc63edfe3848bd4e19a4f0bd',
     category: 'Business Systems',
-    fileName: 'International_Institute_of_Business_Analysis_IIBA.jpg',
+    fileName: 'international-institute-of-business-analysis-iiba.jpg',
     skills: ['Business Analysis', 'Systems Requirements', 'Product Lifecycle Flow']
   },
   {
@@ -504,7 +504,7 @@ export const CERTIFICATES_DATA: CertificateItem[] = [
     issuer: 'CMCA (Children\'s Movement for Civic Awareness)',
     date: 'Jan 2024',
     category: 'Social Impact',
-    fileName: 'CMCA_workshop_certificate.jpg',
+    fileName: 'cmca-workshop-certificate.jpg',
     skills: ['Community Engagement', 'Networking', 'Social Responsibility']
   },
   {
@@ -514,7 +514,7 @@ export const CERTIFICATES_DATA: CertificateItem[] = [
     date: 'Feb 2024',
     credentialId: 'UDAAN-2024-4040',
     category: 'Industrial Exposure',
-    fileName: 'Adani_Sandhya_industrial_visit_Certificate.jpg',
+    fileName: 'adani-sandhya-industrial-visit-certificate.jpg',
     skills: ['Power Systems', 'Industrial Operations', 'High-Scale Auditing']
   },
   {
@@ -524,7 +524,7 @@ export const CERTIFICATES_DATA: CertificateItem[] = [
     date: 'Jul 2024',
     credentialId: '119854-25034398-1016',
     category: 'Professional Grooming',
-    fileName: 'Sandhya_Tiwari_TCS_iON_Career_Edge_-_Young_Professional_certificate.png',
+    fileName: 'sandhya-tiwari-tcs-ion-career-edge-young-professional-certificate.png',
     skills: ['Effective Email Writing', 'Accounting Fundamentals', 'Business Communication']
   },
   {
@@ -533,7 +533,7 @@ export const CERTIFICATES_DATA: CertificateItem[] = [
     issuer: 'Tata Consultancy Services',
     date: 'Oct 2023',
     category: 'Soft Skills',
-    fileName: 'TCS_Presentation_skills.jpg',
+    fileName: 'tcs-presentation-skills.jpg',
     skills: ['Visual Design Principles', 'Public Interactivity']
   },
   {
@@ -542,7 +542,7 @@ export const CERTIFICATES_DATA: CertificateItem[] = [
     issuer: 'Tata Consultancy Services',
     date: 'Nov 2023',
     category: 'Communication',
-    fileName: 'TCS_Communication_skills.png',
+    fileName: 'tcs-communication-skills.png',
     skills: ['Interpersonal Correspondence', 'Professional Writing']
   },
   {
@@ -551,7 +551,7 @@ export const CERTIFICATES_DATA: CertificateItem[] = [
     issuer: 'LinkedIn',
     date: 'Oct 2023',
     category: 'Databases',
-    fileName: 'SQL_Practice-Intermediate_Queries.jpg',
+    fileName: 'sql-practice-intermediate-queries.jpg',
     skills: ['SQL', 'Database Queries', 'Aggregate Subqueries']
   },
   {
@@ -560,7 +560,7 @@ export const CERTIFICATES_DATA: CertificateItem[] = [
     issuer: 'Project Management Institute (PMI)®',
     date: '2024',
     category: 'Business Systems',
-    fileName: 'Project_Management_Institute_PMI.jpg',
+    fileName: 'project-management-institute-pmi.jpg',
     skills: ['Project Lifecycle', 'Scope Planning', 'Agile Methodologies']
   },
   {
@@ -569,7 +569,7 @@ export const CERTIFICATES_DATA: CertificateItem[] = [
     issuer: 'Microsoft & LinkedIn',
     date: 'Sep 2023',
     category: 'AI / Ethics',
-    fileName: 'Career_Essentials_in_Generative_AI_by_Microsoft_and_LinkedIn.jpg',
+    fileName: 'career-essentials-in-generative-ai-by-microsoft-and-linkedin.jpg',
     skills: ['Computer Ethics', 'Artificial Intelligence (AI)', 'Generative Models']
   },
   {
@@ -578,7 +578,7 @@ export const CERTIFICATES_DATA: CertificateItem[] = [
     issuer: 'LinkedIn',
     date: 'Sep 2023',
     category: 'Artificial Intelligence',
-    fileName: 'Introduction_to_Artificial_Intelligence_2023.jpg',
+    fileName: 'introduction-to-artificial-intelligence-2023.jpg',
     skills: ['Artificial Intelligence', 'Computational Logic', 'Symbolic Systems']
   },
   {
@@ -587,7 +587,7 @@ export const CERTIFICATES_DATA: CertificateItem[] = [
     issuer: 'LinkedIn',
     date: 'Sep 2023',
     category: 'Productivity',
-    fileName: 'Microsoft_365_Copilot_December_2023.jpg',
+    fileName: 'microsoft-365-copilot-december-2023.jpg',
     skills: ['Microsoft Office', 'Copilot Integration', 'Workspace Automation']
   },
   {
@@ -596,7 +596,7 @@ export const CERTIFICATES_DATA: CertificateItem[] = [
     issuer: 'University of Mumbai',
     date: '2024 - 2025',
     category: 'Social Impact',
-    fileName: 'DLLE_Certificate_TIWARI_SANDHYA_VIJAY_MEENA.jpg',
+    fileName: 'dlle-certificate-tiwari-sandhya-vijay-meena.jpg',
     skills: ['120+ Hours of Extension Work', 'Information Technology Activities', 'Industry Orientation Research', 'Entrepreneurship Guidance', 'Women Empowerment Seminars', 'Population Survey Analysis']
   },
   {
@@ -605,7 +605,7 @@ export const CERTIFICATES_DATA: CertificateItem[] = [
     issuer: 'Talent Corner HR Services Pvt Ltd',
     date: 'Apr 2025 - Jul 2025',
     category: 'Industry Experience',
-    fileName: 'Internship_experience_at_Talent_Corner_HR_Services_Pvt_Ltd.jpg',
+    fileName: 'internship-experience-at-talent-corner-hr-services-pvt-ltd.jpg',
     skills: ['React.js Development', 'Express Server Integration', 'MySQL Querying', 'API testing with Postman', 'Vercel Deployment']
   },
   {
@@ -614,7 +614,7 @@ export const CERTIFICATES_DATA: CertificateItem[] = [
     issuer: 'Sheth L.U.J. and Sir M.V. College',
     date: '2025 - 2026',
     category: 'Arts / Leadership',
-    fileName: 'Singing_Co-ordinator_at_VIBES_Wings_of_Joy_2025-26.jpg',
+    fileName: 'singing-co-ordinator-at-vibes-wings-of-joy-2025-26.jpg',
     skills: ['Cultural Event Leadership', 'Vocal Competition Logistics', 'Team Allotment']
   },
   {
@@ -623,7 +623,7 @@ export const CERTIFICATES_DATA: CertificateItem[] = [
     issuer: 'Sheth L.U.J. and Sir M.V. College',
     date: '2025',
     category: 'Arts / Leadership',
-    fileName: 'Coordinator_for_the_Singing_Competition.jpg',
+    fileName: 'coordinator-for-the-singing-competition.jpg',
     skills: ['Competition Flow Sequencing', 'Judges Panel Management', 'Audiences Logistics']
   },
   {
@@ -632,7 +632,7 @@ export const CERTIFICATES_DATA: CertificateItem[] = [
     issuer: 'Technical Events Syndicate',
     date: '2025',
     category: 'Competitive Programming',
-    fileName: 'Coding_Execution_Championship_2025_C_programming_Final_stage.jpg',
+    fileName: 'coding-execution-championship-2025-c-programming-final-stage.jpg',
     skills: ['C Advanced Syntax', 'Dynamic Allocation Logic', 'Algorithm Efficiency Parsing']
   },
   {
@@ -641,7 +641,7 @@ export const CERTIFICATES_DATA: CertificateItem[] = [
     issuer: 'Technical Events Syndicate',
     date: '2025',
     category: 'Competitive Programming',
-    fileName: 'Coding_Execution_Championship_2025_C_programming_Semi_Final_stage.jpg',
+    fileName: 'coding-execution-championship-2025-c-programming-semi-final-stage.jpg',
     skills: ['C Pointer Arithmetic', 'File I/O Parsing', 'Recursive Routines']
   },
   {
@@ -650,7 +650,7 @@ export const CERTIFICATES_DATA: CertificateItem[] = [
     issuer: 'Technical Events Syndicate',
     date: '2025',
     category: 'Competitive Programming',
-    fileName: 'Coding_Execution_Championship_2025_C_programming.jpg',
+    fileName: 'coding-execution-championship-2025-c-programming.jpg',
     skills: ['Core C Structs', 'Iterative Speed Optimization']
   },
   {
@@ -659,7 +659,7 @@ export const CERTIFICATES_DATA: CertificateItem[] = [
     issuer: 'Technical Events Syndicate',
     date: '2025',
     category: 'Competitive Programming',
-    fileName: 'Coding_Execution_Championship_2025_java_1st_stage.jpg',
+    fileName: 'coding-execution-championship-2025-java-1st-stage.jpg',
     skills: ['Java Core VM Principles', 'Class Implementations']
   },
   {
@@ -668,7 +668,7 @@ export const CERTIFICATES_DATA: CertificateItem[] = [
     issuer: 'Technical Events Syndicate',
     date: '2025',
     category: 'Competitive Programming',
-    fileName: 'Coding_Execution_Championship_Java_Semi_Final_stage.jpg',
+    fileName: 'coding-execution-championship-java-semi-final-stage.jpg',
     skills: ['Exception Interception', 'Polymorphic Structs', 'Interface Designs']
   },
   {
@@ -677,7 +677,7 @@ export const CERTIFICATES_DATA: CertificateItem[] = [
     issuer: 'Eco Department & Principal Board',
     date: '2024 - 2025',
     category: 'Sustainability',
-    fileName: 'College_Green_Audit_Project_2024-25_Certificate.jpg',
+    fileName: 'college-green-audit-project-2024-25-certificate.jpg',
     skills: ['Plant Curation Metadata', 'QR Dataset Deployment', 'Field Photography Assets']
   },
   {
@@ -686,7 +686,7 @@ export const CERTIFICATES_DATA: CertificateItem[] = [
     issuer: 'International Journal of Advance and Innovative Research',
     date: '2026',
     category: 'Research & Innovation',
-    fileName: 'ICMVLU21_Sandhya.jpg',
+    fileName: 'icmvlu21-sandhya.jpg',
     skills: ['Scientific Writing', 'Academic Publication Research', 'Peer Review Defences']
   },
   {
@@ -695,7 +695,7 @@ export const CERTIFICATES_DATA: CertificateItem[] = [
     issuer: 'National IPR Committee',
     date: '2025',
     category: 'IPR / Academics',
-    fileName: 'Glimpses_on_Intellectual_Property_Rights.jpg',
+    fileName: 'glimpses-on-intellectual-property-rights.jpg',
     skills: ['Patenting Workflows', 'Copyright Infringement Auditing']
   },
   {
@@ -704,7 +704,7 @@ export const CERTIFICATES_DATA: CertificateItem[] = [
     issuer: 'Sheth L.U.J. and Sir M.V. College',
     date: '2025',
     category: 'Arts / Leadership',
-    fileName: 'Host_of_Glimpses_on_Intellectual_Property_Rights.jpg',
+    fileName: 'host-of-glimpses-on-intellectual-property-rights.jpg',
     skills: ['Anchoring & Host Protocols', 'Stage Management Coordination', 'Dialogue Moderation']
   }
 ];

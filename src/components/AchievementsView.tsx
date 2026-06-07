@@ -4,6 +4,7 @@ import {
   Award, 
   Calendar, 
   ChevronRight, 
+  ChevronLeft,
   Search, 
   Filter, 
   ExternalLink, 
@@ -13,7 +14,8 @@ import {
   ShieldCheck, 
   BookOpen,
   ArrowUpRight,
-  FileBadge
+  FileBadge,
+  Download
 } from 'lucide-react';
 import { ACHIEVEMENTS_DATA, CERTIFICATES_DATA } from '../data/portfolioData';
 import { CertificateItem } from '../types';
@@ -23,6 +25,163 @@ interface AchievementsViewProps {
   searchQuery?: string;
 }
 
+interface GroupedCertificate {
+  id: string;
+  title: string;
+  category: 'Research' | 'AI' | 'Programming' | 'Communication' | 'Leadership' | 'Community Service' | 'Industry Exposure';
+  certificates: CertificateItem[];
+}
+
+const CATEGORIES = [
+  'All',
+  'Research',
+  'AI',
+  'Programming',
+  'Communication',
+  'Leadership',
+  'Community Service',
+  'Industry Exposure'
+];
+
+const GROUPED_CERTIFICATES: GroupedCertificate[] = [
+  {
+    id: 'group_aavishkar',
+    title: 'Avishkar Research Convention',
+    category: 'Research',
+    certificates: CERTIFICATES_DATA.filter(c => 
+      ['cert_aavishkar_merit', 'cert_aavishkar_part', 'cert_sig_lang_letter', 'cert_aavishkar_final_poster', 'cert_aavishkar_zonal_poster'].includes(c.id)
+    )
+  },
+  {
+    id: 'group_ipr',
+    title: 'Intellectual Property Rights Studies',
+    category: 'Research',
+    certificates: CERTIFICATES_DATA.filter(c => 
+      ['cert_ipr_seminar_glimpses', 'cert_ipr_seminar_host'].includes(c.id)
+    )
+  },
+  {
+    id: 'group_publications',
+    title: 'Academic Research & Publications',
+    category: 'Research',
+    certificates: CERTIFICATES_DATA.filter(c => 
+      ['cert_scientific_journal'].includes(c.id)
+    )
+  },
+  {
+    id: 'group_ai',
+    title: 'Generative AI & Tech Foundations',
+    category: 'AI',
+    certificates: CERTIFICATES_DATA.filter(c => 
+      ['cert_genai_essentials', 'cert_prompt', 'cert_intro_ai', 'cert_copilot'].includes(c.id)
+    )
+  },
+  {
+    id: 'group_coding',
+    title: 'Code Execution Championship',
+    category: 'Programming',
+    certificates: CERTIFICATES_DATA.filter(c => 
+      ['cert_coding_c_final', 'cert_coding_c_semifinal', 'cert_coding_c_championship', 'cert_coding_java_stage1', 'cert_coding_java_semifinal'].includes(c.id)
+    )
+  },
+  {
+    id: 'group_sql',
+    title: 'SQL Practice & Database Querying',
+    category: 'Programming',
+    certificates: CERTIFICATES_DATA.filter(c => 
+      ['cert_sql_intermediate'].includes(c.id)
+    )
+  },
+  {
+    id: 'group_tcs',
+    title: 'TCS Professional Development',
+    category: 'Communication',
+    certificates: CERTIFICATES_DATA.filter(c => 
+      ['cert_tcs_career', 'cert_tcs_presentation', 'cert_tcs_comm'].includes(c.id)
+    )
+  },
+  {
+    id: 'group_outreach_speaker',
+    title: 'Academic Speaker & Seminar Outreach',
+    category: 'Communication',
+    certificates: CERTIFICATES_DATA.filter(c => 
+      ['cert_knowledge'].includes(c.id)
+    )
+  },
+  {
+    id: 'group_cultural_lead',
+    title: 'Cultural Leadership Coordination',
+    category: 'Leadership',
+    certificates: CERTIFICATES_DATA.filter(c => 
+      ['cert_vibes_sing_lead', 'cert_singing_competition_coordinator'].includes(c.id)
+    )
+  },
+  {
+    id: 'group_dlle',
+    title: 'DLLE Extension Program',
+    category: 'Community Service',
+    certificates: CERTIFICATES_DATA.filter(c => 
+      ['cert_dlle'].includes(c.id)
+    )
+  },
+  {
+    id: 'group_cmca',
+    title: 'Civic Awareness & CMCA Volunteerism',
+    category: 'Community Service',
+    certificates: CERTIFICATES_DATA.filter(c => 
+      ['cert_cmca'].includes(c.id)
+    )
+  },
+  {
+    id: 'group_guinness',
+    title: 'L\'Oréal Guinness World Record Attempt',
+    category: 'Community Service',
+    certificates: CERTIFICATES_DATA.filter(c => 
+      ['cert_guinness'].includes(c.id)
+    )
+  },
+  {
+    id: 'group_green_audit',
+    title: 'College Green Campus Audit',
+    category: 'Community Service',
+    certificates: CERTIFICATES_DATA.filter(c => 
+      ['cert_green_audit_proj'].includes(c.id)
+    )
+  },
+  {
+    id: 'group_talent_corner',
+    title: 'React Web Development Internship',
+    category: 'Industry Exposure',
+    certificates: CERTIFICATES_DATA.filter(c => 
+      ['cert_talent_corner'].includes(c.id)
+    )
+  },
+  {
+    id: 'group_industrial_visit',
+    title: 'Industrial Visit & Power Tech Training',
+    category: 'Industry Exposure',
+    certificates: CERTIFICATES_DATA.filter(c => 
+      ['cert_adani'].includes(c.id)
+    )
+  },
+  {
+    id: 'group_biz_analysis',
+    title: 'Business Systems Analysis',
+    category: 'Industry Exposure',
+    certificates: CERTIFICATES_DATA.filter(c => 
+      ['cert_biz_analyst'].includes(c.id)
+    )
+  },
+  {
+    id: 'group_project_mgmt',
+    title: 'Project Management Foundation',
+    category: 'Industry Exposure',
+    certificates: CERTIFICATES_DATA.filter(c => 
+      ['cert_pmi'].includes(c.id)
+    )
+  },
+];
+
 export default function AchievementsView({ searchQuery: propSearchQuery }: AchievementsViewProps = {}) {
   const [localSearchQuery, setLocalSearchQuery] = useState('');
   const [viewMode, setViewMode] = useState<'credentials' | 'community'>('credentials');
@@ -30,17 +189,13 @@ export default function AchievementsView({ searchQuery: propSearchQuery }: Achie
   const [selectedIssuer, setSelectedIssuer] = useState<string>('all');
   const [selectedCert, setSelectedCert] = useState<CertificateItem | null>(null);
   const [imageError, setImageError] = useState(false);
+  
+  // Group Carousel state
+  const [carouselIndexes, setCarouselIndexes] = useState<Record<string, number>>({});
+  const [selectedCategory, setSelectedCategory] = useState<string>('All');
 
   // Filter unique issuers
   const issuers = ['all', ...Array.from(new Set(CERTIFICATES_DATA.map(c => c.issuer)))];
-
-  const filteredCertificates = CERTIFICATES_DATA.filter(cert => {
-    const matchesSearch = cert.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
-                          cert.skills?.some(s => s.toLowerCase().includes(searchQuery.toLowerCase())) ||
-                          cert.category.toLowerCase().includes(searchQuery.toLowerCase());
-    const matchesIssuer = selectedIssuer === 'all' || cert.issuer === selectedIssuer;
-    return matchesSearch && matchesIssuer;
-  });
 
   const handleCertificateClick = (cert: CertificateItem) => {
     sysSynth.playBeep(480, 0.08, 'sine');
@@ -53,6 +208,65 @@ export default function AchievementsView({ searchQuery: propSearchQuery }: Achie
     setSelectedCert(null);
     setImageError(false);
   };
+
+  const handleNext = (groupId: string, max: number, e: React.MouseEvent) => {
+    e.stopPropagation();
+    sysSynth.playBeep(520, 0.04, 'sine');
+    setCarouselIndexes(prev => ({
+      ...prev,
+      [groupId]: ((prev[groupId] ?? 0) + 1) % max
+    }));
+  };
+
+  const handlePrev = (groupId: string, max: number, e: React.MouseEvent) => {
+    e.stopPropagation();
+    sysSynth.playBeep(480, 0.04, 'sine');
+    setCarouselIndexes(prev => ({
+      ...prev,
+      [groupId]: ((prev[groupId] ?? 0) - 1 + max) % max
+    }));
+  };
+
+  const handleDownloadFile = (fileName: string, e: React.MouseEvent) => {
+    e.stopPropagation();
+    sysSynth.playBeep(600, 0.08, 'sine');
+    
+    // Physical single-file download
+    const link = document.createElement('a');
+    link.href = `/assets/${fileName}`;
+    link.download = fileName;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
+  // Filter groups intelligently
+  const filteredGroups = GROUPED_CERTIFICATES.filter(group => {
+    // 1. Filter by category setting
+    if (selectedCategory !== 'All' && group.category !== selectedCategory) {
+      return false;
+    }
+
+    // 2. Filter by search text query
+    if (searchQuery.trim() !== '') {
+      const q = searchQuery.toLowerCase();
+      const matchesGroupTitle = group.title.toLowerCase().includes(q) || group.category.toLowerCase().includes(q);
+      const matchesAnyCertificate = group.certificates.some(cert => 
+        cert.title.toLowerCase().includes(q) ||
+        cert.issuer.toLowerCase().includes(q) ||
+        cert.skills?.some(s => s.toLowerCase().includes(q))
+      );
+      return matchesGroupTitle || matchesAnyCertificate;
+    }
+
+    // 3. Filter by traditional Issuer selection
+    if (selectedIssuer !== 'all') {
+      const hasIssuer = group.certificates.some(cert => cert.issuer === selectedIssuer);
+      return hasIssuer;
+    }
+
+    return true;
+  });
 
   return (
     <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
@@ -121,7 +335,7 @@ export default function AchievementsView({ searchQuery: propSearchQuery }: Achie
             <div className="space-y-4">
               {ACHIEVEMENTS_DATA.map((ach) => (
                 <div 
-                  key={ach.id}
+                   key={ach.id}
                   className="p-5 rounded-2xl bg-gradient-to-b from-white/[0.02] to-black/30 border border-white/5 hover:border-purple-500/20 transition-all group relative overflow-hidden"
                 >
                   <div className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-br from-white/3 to-transparent rounded-bl-full pointer-events-none" />
@@ -152,109 +366,230 @@ export default function AchievementsView({ searchQuery: propSearchQuery }: Achie
           <div className="lg:col-span-8 space-y-6">
             
             {/* Controls Bar */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-between items-start sm:items-center border-b border-white/5 pb-4">
-              <div className="flex items-center gap-2">
-                <Award className="w-4 h-4 text-[#ccff00]" />
-                <h2 className="text-xs font-mono font-black tracking-widest text-white uppercase">
-                  CERTIFICATE ARCHIVE ({filteredCertificates.length})
-                </h2>
+            <div className="flex flex-col gap-4 border-b border-white/5 pb-4">
+              <div className="flex flex-col sm:flex-row gap-4 justify-between items-start sm:items-center">
+                <div className="flex items-center gap-2">
+                  <Award className="w-4 h-4 text-[#ccff00]" />
+                  <h2 className="text-xs font-mono font-black tracking-widest text-white uppercase">
+                    CERTIFICATE ARCHIVE ({filteredGroups.length} Groups)
+                  </h2>
+                </div>
+
+                {/* Inputs Grid */}
+                <div className="flex flex-wrap gap-2 w-full sm:w-auto">
+                  {/* Search */}
+                  <div className="relative flex-1 sm:flex-initial min-w-[180px]">
+                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-zinc-500" />
+                    <input
+                      type="text"
+                      placeholder="Filter by skill, title..."
+                      value={searchQuery}
+                      onChange={(e) => {
+                        if (propSearchQuery === undefined) {
+                          setLocalSearchQuery(e.target.value);
+                        }
+                      }}
+                      disabled={propSearchQuery !== undefined}
+                      className="w-full bg-white/[0.02] border border-white/10 rounded-xl py-1.5 pl-8 pr-3 text-[10px] font-mono text-white outline-none focus:border-[#ccff00]/40 font-bold placeholder:text-zinc-600 transition-all disabled:opacity-75"
+                    />
+                  </div>
+
+                  {/* Select Issuer */}
+                  <div className="relative">
+                    <select
+                      value={selectedIssuer}
+                      onChange={(e) => setSelectedIssuer(e.target.value)}
+                      className="bg-zinc-900 border border-white/10 rounded-xl py-1.5 pl-3 pr-8 text-[11px] font-mono text-white/80 outline-none focus:border-[#ccff00]/40 appearance-none cursor-pointer"
+                    >
+                      {issuers.map((iss) => (
+                        <option key={iss} value={iss}>
+                          {iss === 'all' ? 'All Issuers' : iss.toUpperCase()}
+                        </option>
+                      ))}
+                    </select>
+                    <Filter className="absolute right-3 top-1/2 -translate-y-1/2 w-3 h-3 text-zinc-500 pointer-events-none" />
+                  </div>
+                </div>
               </div>
 
-              {/* Inputs Grid */}
-              <div className="flex flex-wrap gap-2 w-full sm:w-auto">
-                {/* Search */}
-                <div className="relative flex-1 sm:flex-initial min-w-[180px]">
-                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-zinc-500" />
-                  <input
-                    type="text"
-                    placeholder="Filter by skill, title..."
-                    value={searchQuery}
-                    onChange={(e) => {
-                      if (propSearchQuery === undefined) {
-                        setLocalSearchQuery(e.target.value);
-                      }
+              {/* Category Filter Pills (Intelligent Grouping) */}
+              <div className="flex flex-wrap gap-1.5 pt-2">
+                {CATEGORIES.map((cat) => (
+                  <button
+                    key={cat}
+                    onClick={() => {
+                      sysSynth.playBeep(450, 0.03, 'sine');
+                      setSelectedCategory(cat);
                     }}
-                    disabled={propSearchQuery !== undefined}
-                    className="w-full bg-white/[0.02] border border-white/10 rounded-xl py-1.5 pl-8 pr-3 text-[10px] font-mono text-white outline-none focus:border-[#ccff00]/40 font-bold placeholder:text-zinc-600 transition-all disabled:opacity-75"
-                  />
-                </div>
-
-                {/* Select Issuer */}
-                <div className="relative">
-                  <select
-                    value={selectedIssuer}
-                    onChange={(e) => setSelectedIssuer(e.target.value)}
-                    className="bg-zinc-900 border border-white/10 rounded-xl py-1.5 pl-3 pr-8 text-[11px] font-mono text-white/80 outline-none focus:border-[#ccff00]/40 appearance-none cursor-pointer"
+                    className={`px-3 py-1 font-mono text-[9px] font-bold tracking-wider uppercase rounded-lg border transition-all cursor-pointer ${
+                      selectedCategory === cat
+                        ? 'bg-purple-500/10 text-[#ccff00] border-purple-500/30'
+                        : 'bg-white/[0.01] text-zinc-500 border-white/5 hover:text-white hover:bg-white/[0.02]'
+                    }`}
                   >
-                    {issuers.map((iss) => (
-                      <option key={iss} value={iss}>
-                        {iss === 'all' ? 'All Issuers' : iss.toUpperCase()}
-                      </option>
-                    ))}
-                  </select>
-                  <Filter className="absolute right-3 top-1/2 -translate-y-1/2 w-3 h-3 text-zinc-500 pointer-events-none" />
-                </div>
+                    {cat}
+                  </button>
+                ))}
               </div>
             </div>
 
-            {/* Grid Layout */}
-            {filteredCertificates.length === 0 ? (
+            {/* Grid Layout - Interactive Group Cards with internal Carousels */}
+            {filteredGroups.length === 0 ? (
               <div className="p-12 text-center rounded-2xl bg-white/[0.01] border border-dashed border-white/5 font-mono text-zinc-500 text-[10px]">
                 No certifications matching current filter queries found.
               </div>
             ) : (
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {filteredCertificates.map((cert) => (
-                  <div
-                    key={cert.id}
-                    onClick={() => handleCertificateClick(cert)}
-                    className="p-4 rounded-xl bg-gradient-to-b from-white/[0.02] to-black/30 border border-white/5 hover:border-[#ccff00]/15 hover:bg-white/[0.03] transition-all cursor-pointer group flex flex-col justify-between space-y-4"
-                  >
-                    <div className="space-y-2">
-                      <div className="flex justify-between items-start gap-2">
-                        <span className="text-[8px] font-mono text-zinc-500 tracking-wider uppercase">
-                          {cert.category} // {cert.date}
-                        </span>
-                        <span className="text-[8px] font-mono text-[#ccff00] font-bold px-1.5 py-0.5 rounded bg-[#ccff00]/5 border border-[#ccff00]/10 shrink-0">
-                          VERIFIED
-                        </span>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                {filteredGroups.map((group) => {
+                  const certs = group.certificates;
+                  
+                  // Filter certificates matching search query inside group to cycle more relevant entries
+                  const matchedCerts = certs.filter(cert => {
+                    if (searchQuery.trim() === '') return true;
+                    const q = searchQuery.toLowerCase();
+                    return cert.title.toLowerCase().includes(q) ||
+                           cert.issuer.toLowerCase().includes(q) ||
+                           cert.skills?.some(s => s.toLowerCase().includes(q));
+                  });
+                  
+                  const displayCerts = matchedCerts.length > 0 ? matchedCerts : certs;
+                  const totalInGroup = displayCerts.length;
+                  const activeIndexRaw = carouselIndexes[group.id] ?? 0;
+                  const activeIndex = (activeIndexRaw >= totalInGroup ? 0 : activeIndexRaw);
+                  const activeCert = displayCerts[activeIndex];
+                  
+                  if (!activeCert) return null;
+
+                  return (
+                    <div
+                      key={group.id}
+                      className="p-5 rounded-2xl bg-gradient-to-b from-white/[0.02] to-black/40 border border-white/5 hover:border-purple-500/15 transition-all flex flex-col justify-between space-y-4 shadow-xl select-none"
+                    >
+                      {/* Event Group Card Header */}
+                      <div className="space-y-1.5 pb-2.5 border-b border-white/5">
+                        <div className="flex justify-between items-center gap-1">
+                          <span className="text-[7.5px] font-mono text-purple-400 font-bold uppercase tracking-widest">
+                            {group.category}
+                          </span>
+                          <span className="text-[7.5px] font-mono text-zinc-500 uppercase tracking-wider shrink-0 bg-white/[0.02] border border-white/5 px-2 py-0.5 rounded-md">
+                            {certs.length > 1 ? `${certs.length} Credentials` : '1 Credential'}
+                          </span>
+                        </div>
+                        <h3 className="text-[13px] font-headline font-black text-white hover:text-[#ccff00] transition-colors leading-tight uppercase tracking-tight">
+                          {group.title}
+                        </h3>
                       </div>
 
-                      <h3 className="text-xs font-semibold text-white/90 group-hover:text-[#ccff00] leading-snug transition-colors pr-2">
-                        {cert.title}
-                      </h3>
-                    </div>
-
-                    <div className="space-y-3">
-                      <div className="text-[10px] text-zinc-400 font-medium">
-                        Issuer: <span className="text-white/80">{cert.issuer}</span>
-                      </div>
-
-                      {/* Skill Tags */}
-                      <div className="flex flex-wrap gap-1">
-                        {cert.skills?.slice(0, 3).map((sk, index) => (
-                          <span 
-                            key={index} 
-                            className="text-[8px] font-mono text-zinc-500 bg-white/[0.02] border border-white/5 px-1.5 py-0.5 rounded"
-                          >
-                            {sk}
-                          </span>
-                        ))}
-                        {cert.skills && cert.skills.length > 3 && (
-                          <span className="text-[8px] font-mono text-[#ccff00] font-bold px-1 py-0.5">
-                            +{cert.skills.length - 3} More
-                          </span>
+                      {/* Carousel Thumbnail Visualizer Frame */}
+                      <div 
+                        onClick={() => handleCertificateClick(activeCert)}
+                        className="relative rounded-xl overflow-hidden bg-black/60 border border-white/5 aspect-[4/3] flex items-center justify-center p-3 cursor-pointer group/thumb shadow-inner bg-gradient-to-tr from-zinc-950 to-zinc-900"
+                      >
+                        {activeCert.fileName.toLowerCase().endsWith('.pdf') ? (
+                          <div className="flex flex-col items-center justify-center space-y-2 text-center">
+                            <FileBadge className="w-10 h-10 text-purple-400 group-hover/thumb:scale-110 transition-transform" />
+                            <span className="text-[8px] font-mono text-zinc-500 uppercase tracking-widest block">PDF BLUEPRINT</span>
+                            <span className="text-[9px] text-zinc-400 font-sans px-2 truncate max-w-[190px]">
+                              {activeCert.title}
+                            </span>
+                          </div>
+                        ) : (
+                          <div className="relative w-full h-full flex items-center justify-center">
+                            <img 
+                              src={`/assets/${activeCert.fileName}`} 
+                              alt={activeCert.title}
+                              referrerPolicy="no-referrer"
+                              className="max-h-full max-w-full object-contain rounded border border-white/5 shadow-md group-hover/thumb:scale-102 transition-transform duration-300"
+                            />
+                            <div className="absolute inset-0 bg-black/40 opacity-0 group-hover/thumb:opacity-100 transition-opacity flex items-center justify-center">
+                              <span className="px-3 py-1.5 bg-purple-600 text-white font-mono text-[8px] font-black tracking-widest uppercase rounded">
+                                INSPECT CREDENTIAL
+                              </span>
+                            </div>
+                          </div>
                         )}
+
+                        {/* Page index indicator overlay */}
+                        <div className="absolute bottom-2 left-2 px-1.5 py-0.5 bg-black/80 border border-white/5 rounded text-[7.5px] font-mono text-[#ccff00]">
+                          PAGE {activeIndex + 1} / {totalInGroup}
+                        </div>
                       </div>
-                    </div>
 
-                    <div className="flex items-center justify-between pt-2 border-t border-white/5 text-[9px] font-mono text-zinc-500 group-hover:text-white transition-colors">
-                      <span>LAUNCH CREDENTIAL PROTOCOL</span>
-                      <ArrowUpRight className="w-3.5 h-3.5 text-zinc-500 group-hover:text-[#ccff00] transition-colors" />
-                    </div>
+                      {/* Mini-Carousel Navigation Controls */}
+                      {totalInGroup > 1 && (
+                        <div className="flex items-center justify-between bg-white/[0.01] border border-white/5 rounded-lg p-1">
+                          <button
+                            onClick={(e) => handlePrev(group.id, totalInGroup, e)}
+                            className="p-1 rounded bg-white/5 hover:bg-white/10 text-white transition-colors cursor-pointer"
+                          >
+                            <ChevronLeft className="w-3.5 h-3.5" />
+                          </button>
+                          <span className="text-[8px] font-mono text-zinc-500 uppercase tracking-wider">
+                            Slide {activeIndex + 1} of {totalInGroup}
+                          </span>
+                          <button
+                            onClick={(e) => handleNext(group.id, totalInGroup, e)}
+                            className="p-1 rounded bg-white/5 hover:bg-white/10 text-white transition-colors cursor-pointer"
+                          >
+                            <ChevronRight className="w-3.5 h-3.5" />
+                          </button>
+                        </div>
+                      )}
 
-                  </div>
-                ))}
+                      {/* Active Credential Details segment */}
+                      <div className="space-y-2 min-h-[92px] flex flex-col justify-between">
+                        <div className="space-y-1">
+                          <span className="text-[8px] font-mono text-zinc-500 tracking-wider uppercase block">
+                            Active Slide: // {activeCert.date}
+                          </span>
+                          <h4 className="text-[11px] font-bold text-white/95 leading-normal truncate-2-lines uppercase">
+                            {activeCert.title}
+                          </h4>
+                          <span className="text-[10px] text-zinc-400 block truncate">
+                            Issuer: <span className="text-white/70">{activeCert.issuer}</span>
+                          </span>
+                        </div>
+
+                        {/* Skills preview */}
+                        <div className="flex flex-wrap gap-1 pt-1">
+                          {activeCert.skills?.slice(0, 2).map((sk, index) => (
+                            <span 
+                              key={index} 
+                              className="text-[8px] font-mono text-zinc-500 bg-white/[0.02] border border-white/5 px-1.5 py-0.5 rounded"
+                            >
+                              {sk}
+                            </span>
+                          ))}
+                          {activeCert.skills && activeCert.skills.length > 2 && (
+                            <span className="text-[8px] font-mono text-[#ccff00] font-bold px-1 py-0.5">
+                              +{activeCert.skills.length - 2} More
+                            </span>
+                          )}
+                        </div>
+                      </div>
+
+                      {/* Action buttons footer */}
+                      <div className="flex gap-2 pt-2 border-t border-white/5">
+                        <button
+                          onClick={() => handleCertificateClick(activeCert)}
+                          className="flex-1 py-1.5 bg-white/[0.02] hover:bg-white/5 border border-white/10 rounded-xl text-[9px] font-mono font-bold tracking-wider text-white uppercase transition-colors flex items-center justify-center gap-1.5 cursor-pointer"
+                        >
+                          <ArrowUpRight className="w-3 h-3 text-[#ccff00]" />
+                          <span>LAUNCH PROTOCOL</span>
+                        </button>
+
+                        <button
+                          onClick={(e) => handleDownloadFile(activeCert.fileName, e)}
+                          className="px-2.5 py-1.5 bg-purple-500/10 hover:bg-purple-500/20 border border-purple-500/30 rounded-xl text-[9px] font-mono text-purple-400 uppercase transition-colors flex items-center justify-center cursor-pointer"
+                          title="Download Document"
+                        >
+                          <Download className="w-3.5 h-3.5" />
+                        </button>
+                      </div>
+
+                    </div>
+                  );
+                })}
               </div>
             )}
 

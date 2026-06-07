@@ -192,7 +192,7 @@ export default function AboutView() {
               style={{ width: '224px', height: '228px' }}
             >
               <img 
-                src="/assets/Sandhya_portfolio_image.png" 
+                src="/assets/sandhya-portfolio-image.png" 
                 alt="Sandhya Tiwari" 
                 referrerPolicy="no-referrer"
                 className="object-contain transition-transform duration-500 origin-bottom"

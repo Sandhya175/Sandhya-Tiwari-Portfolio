@@ -10,11 +10,13 @@ interface ResumeDownloadProps {
 export default function ResumeDownload({ isOpen, onClose }: ResumeDownloadProps) {
   const [downloadStep, setDownloadStep] = useState(0);
   const [progress, setProgress] = useState(0);
+  const [hasDownloaded, setHasDownloaded] = useState(false);
 
   useEffect(() => {
     if (!isOpen) {
       setDownloadStep(0);
       setProgress(0);
+      setHasDownloaded(false);
       return;
     }
 
@@ -26,9 +28,6 @@ export default function ResumeDownload({ isOpen, onClose }: ResumeDownloadProps)
       setProgress(prev => {
         if (prev >= 100) {
           clearInterval(timer);
-          setDownloadStep(2); // Accomplished
-          sysSynth.playSuccess();
-          triggerPhysicalFileDownload();
           return 100;
         }
         return prev + 5;
@@ -38,11 +37,20 @@ export default function ResumeDownload({ isOpen, onClose }: ResumeDownloadProps)
     return () => clearInterval(timer);
   }, [isOpen]);
 
+  useEffect(() => {
+    if (isOpen && progress === 100 && !hasDownloaded) {
+      setHasDownloaded(true);
+      setDownloadStep(2); // Accomplished
+      sysSynth.playSuccess();
+      triggerPhysicalFileDownload();
+    }
+  }, [isOpen, progress, hasDownloaded]);
+
   const triggerPhysicalFileDownload = () => {
     try {
       const link = document.createElement('a');
-      link.href = '/assets/Sandhya Tiwari Resume.pdf';
-      link.download = 'Sandhya_Tiwari_Resume.pdf';
+      link.href = '/assets/sandhya-tiwari-resume.pdf';
+      link.download = 'sandhya-tiwari-resume.pdf';
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
@@ -102,7 +110,7 @@ export default function ResumeDownload({ isOpen, onClose }: ResumeDownloadProps)
           </div>
 
           <p className="text-[10px] text-white/50 font-sans leading-relaxed">
-            Downloading <strong className="text-white">Sandhya_Tiwari_Resume.pdf</strong> to your client device. Standard structural profile synced perfectly.
+            Downloading <strong className="text-white">sandhya-tiwari-resume.pdf</strong> to your client device. Standard structural profile synced perfectly.
           </p>
 
           <button 
