@@ -420,6 +420,7 @@ export default function App() {
               searchQuery={searchQuery}
               selectedProject={selectedProject}
               setSelectedProject={setSelectedProject}
+              setActiveTab={handleTabChange}
             />
           )}
 

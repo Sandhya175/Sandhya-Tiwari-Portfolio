@@ -2,13 +2,35 @@ import { Project, Achievement, LeadershipActivity, SkillItem, CertificateItem } 
 
 export const PROJECTS_DATA: Project[] = [
   {
+    id: 'portfolio-website',
+    title: 'Portfolio Website',
+    tagline: 'Personal Portfolio Website',
+    description: 'A futuristic, premium, high-fidelity developer portfolio highlighting web development capabilities, interactive SaaS dashboard charts, and automated hand-tracking puzzle simulations.',
+    technologies: ['React.js', 'Vite', 'TypeScript', 'Tailwind CSS', 'Web Audio API'],
+    category: 'react',
+    image: '/assets/portfolio-preview.png',
+    features: [
+      'Interactive dashboard telemetry systems monitoring user activity, uptime, and growth indicators.',
+      'Advanced concurrent state routing with animated tab transitions and custom sound synth.',
+      'Real-time hand gesture tracking puzzle solver via MediaPipe and Webcam APIs.',
+      'Comprehensive grid indices displaying certifications, publications, and creative works.'
+    ],
+    liveUrl: 'https://sandhya-tiwari-portfolio.vercel.app',
+    githubUrl: 'https://github.com/Sandhya175/Sandhya-Tiwari-Portfolio',
+    stats: [
+      { label: 'Responsive', value: 'Full Viewport' },
+      { label: 'Theme Engine', value: 'Futuristic Dark' },
+      { label: 'Synthesizer', value: 'Web Audio API' }
+    ]
+  },
+  {
     id: 'scanalyzer',
     title: 'Scanalyzer',
     tagline: 'AI-Based Health Report Analyzer',
     description: 'Developed a web-based application to analyze blood test reports and present simplified health insights. Extracted key medical parameters and categorized them into normal, high, or critical ranges for better understanding.',
     technologies: ['React.js', 'Node.js', 'Express.js', 'MySQL', 'API Integration'],
     category: 'ai',
-    image: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&q=80&w=800',
+    image: '/assets/scanalyzer-project.png',
     features: [
       'Developed a web-based application to analyze blood test reports and present simplified health insights.',
       'Implemented functionality to upload report images and PDFs, enabling flexible user input handling.',
@@ -17,7 +39,7 @@ export const PROJECTS_DATA: Project[] = [
       'Generated personalized recommendations, including diet suggestions and precautionary measures based on report values.',
       'Focused on user-centric design by simplifying complex medical data into easy-to-read formats.'
     ],
-    liveUrl: 'https://scanalyzer-eight.vercel.app/',
+    liveUrl: 'https://scanalyzer-eight.vercel.app',
     githubUrl: 'https://github.com/Sandhya175/Scanalyzer',
     caseStudyUrl: '#case-study-scanalyzer',
     stats: [
@@ -27,12 +49,12 @@ export const PROJECTS_DATA: Project[] = [
   },
   {
     id: 'gesture-lab',
-    title: 'Gesture Lab',
+    title: 'Live Gesture Image Puzzle',
     tagline: 'Hand Tracking Puzzle Game',
     description: 'An interactive computer vision-driven image puzzle solver that tracks real-time hand-landmarks and processes geometric gestures via webcam streams.',
     technologies: ['React.js', 'MediaPipe', 'Webcam API', 'Firebase', 'TypeScript'],
     category: 'accessibility',
-    image: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=800',
+    image: '/assets/gesture-puzzle-project.png',
     features: [
       'Real-time hand landmark tracking with extreme accuracy using MediaPipe Hands.',
       'Custom multi-point gesture interpretation recognizing pinch and fist commands.',
@@ -41,7 +63,7 @@ export const PROJECTS_DATA: Project[] = [
       'Smooth micro-animations and physics-like reactive mouse cursor fallbacks.'
     ],
     liveUrl: '#',
-    githubUrl: 'https://github.com/Sandhya175/gesture-lab',
+    githubUrl: 'https://github.com/Sandhya175/LIVE-GESTURE-IMAGE-PUZZLE',
     caseStudyUrl: '#case-study-gesture',
     stats: [
       { label: 'Tracking Engine', value: 'MediaPipe Hands' },
@@ -51,12 +73,12 @@ export const PROJECTS_DATA: Project[] = [
   },
   {
     id: 'fintrack',
-    title: 'FinTrack',
+    title: 'FinTrack Expense Management System',
     tagline: 'AI-Powered Personal Finance & Expense Tracker',
     description: 'Developed a full-stack personal finance management system that enables users to track income, monitor expenses, analyze spending patterns, and manage financial goals through an interactive dashboard.',
     technologies: ['Java', 'JSP', 'Servlets', 'JDBC', 'MySQL', 'HTML', 'CSS', 'JavaScript', 'Chart.js'],
     category: 'ai',
-    image: 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&q=80&w=800',
+    image: '/assets/FinTrack-Login.png',
     features: [
       'Authentication System: Secure Login & Registration with user-specific session management.',
       'Expense Management: Complete CRUD tracking with category and payment method filters.',
@@ -66,7 +88,7 @@ export const PROJECTS_DATA: Project[] = [
       'Data Visualization: Dynamic category breakdown charts and budget progress indicators.'
     ],
     liveUrl: '#',
-    githubUrl: 'https://github.com/Sandhya175/FinTrack',
+    githubUrl: 'https://github.com/Sandhya175/fintrack-expense-management-system',
     caseStudyUrl: '#case-study-fintrack',
     stats: [
       { label: 'Backend Stack', value: 'Java Full Stack' },
@@ -77,12 +99,12 @@ export const PROJECTS_DATA: Project[] = [
   },
   {
     id: 'sign-language',
-    title: 'Real-Time Sign Language Detection & Audio Translation',
-    tagline: 'Avishkar Project',
+    title: 'Aavishkar Project',
+    tagline: 'Avishkar Project (Sign Language Detection)',
     description: 'Developed a real-time system to detect sign language gestures from live video feed and convert them into speech and text output instantly to assist hearing and speech-impaired users.',
     technologies: ['Python', 'OpenCV', 'Machine Learning', 'Text-to-Speech'],
     category: 'accessibility',
-    image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=80&w=800',
+    image: '/assets/aavishkar-project.jpeg',
     features: [
       'Developed a real-time system to detect sign language gestures and convert them into audio output.',
       'Utilized computer vision techniques to capture and interpret hand gestures through live input.',
@@ -92,7 +114,7 @@ export const PROJECTS_DATA: Project[] = [
       'Presented the project at Avishkar and qualified for the Zonal Final Round.'
     ],
     liveUrl: '#',
-    githubUrl: 'https://github.com/Sandhya175/sign-language-detection',
+    githubUrl: 'https://github.com/Sandhya175/Aavishkar_Project',
     caseStudyUrl: '#case-study-sign',
     stats: [
       { label: 'Recognition Engine', value: 'OpenCV' },
@@ -108,7 +130,7 @@ export const PROJECTS_DATA: Project[] = [
     description: 'Developed a web platform to monitor and manage e-waste awareness, reporting, and proper disposal pipelines, offering fluid community interactions and smooth data collection workflows.',
     technologies: ['React.js', 'JavaScript', 'HTML', 'CSS', 'Git', 'GitHub'],
     category: 'react',
-    image: 'https://images.unsplash.com/photo-1550009158-9ebf69173e03?auto=format&fit=crop&q=80&w=800',
+    image: '/assets/ewaste-project.png',
     features: [
       'Developed a web platform to monitor and manage e-waste awareness and reporting.',
       'Built responsive and user-friendly UI components using React.js.',
@@ -116,7 +138,7 @@ export const PROJECTS_DATA: Project[] = [
       'Collaborated in a team environment, dividing tasks across frontend development and logic handling.',
       'Presented the solution within strict timelines during a hackathon, gaining real-world teamwork experience.'
     ],
-    liveUrl: '#',
+    liveUrl: 'https://e-waste-monitoring-system.vercel.app',
     githubUrl: 'https://github.com/Sandhya175/E-Waste-Monitoring-System',
     caseStudyUrl: '#case-study-ewaste',
     stats: [
@@ -132,15 +154,15 @@ export const PROJECTS_DATA: Project[] = [
     description: 'Contributed to the development of Growlio, a React-based application designed to maximize operational data transparency and improve team organization analytics.',
     technologies: ['React.js', 'JavaScript', 'HTML', 'CSS', 'Git'],
     category: 'react',
-    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800',
+    image: '/assets/growlio-project.png',
     features: [
       'Contributed to the development of a React-based application as part of an internship team.',
       'Worked on UI components, feature integration, and data handling.',
       'Assisted in debugging issues and improving overall usability based on feedback.',
       'Coordinated with team members to understand requirements and implement updates efficiently.'
     ],
-    liveUrl: '#',
-    githubUrl: '#',
+    liveUrl: 'https://growlio-portfolio.vercel.app',
+    githubUrl: 'https://github.com/Sandhya175/Growlio',
     stats: [
       { label: 'Role', value: 'Team Dev' },
       { label: 'Platform', value: 'React' },
@@ -149,19 +171,19 @@ export const PROJECTS_DATA: Project[] = [
   },
   {
     id: 'trippy-go',
-    title: 'Trippy Go',
+    title: 'TrippyGo',
     tagline: 'Group Project',
     description: 'Designed and developed flight booking features in a Travel website, creating an intuitive UI and seamless user experience with destination listings, responsive seat charts, and form validation.',
     technologies: ['React.js', 'HTML', 'CSS', 'SCSS', 'JavaScript'],
     category: 'react',
-    image: 'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&q=80&w=800',
+    image: '/assets/trippygo-project.png',
     features: [
       'Designed and developed flight booking features in a Travel website, creating an intuitive UI and seamless user experience for travelers.',
       'Implemented key features such as destination listings, seat selection, and form validation to enhance functionality and usability.',
       'Utilized React.js, SCSS, and JavaScript to build responsive components, ensuring efficient and visually appealing interfaces.'
     ],
     liveUrl: '#',
-    githubUrl: '#',
+    githubUrl: 'https://github.com/Sandhya175/TrippyGo',
     stats: [
       { label: 'UI Prep', value: 'SCSS' },
       { label: 'Responsive', value: 'Fully Grid' },
@@ -170,19 +192,19 @@ export const PROJECTS_DATA: Project[] = [
   },
   {
     id: 'safar',
-    title: 'Safar',
+    title: 'Safar Tours & Travel Website',
     tagline: 'Web Development Project',
     description: 'Safar is a comprehensive travel management website aimed at helping users plan trips and manage travel expenses efficiently, integrating responsive design structures and multimedia views.',
     technologies: ['React.js', 'HTML5', 'CSS3', 'JavaScript', 'Create React App'],
     category: 'react',
-    image: 'https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&q=80&w=800',
+    image: '/assets/safar-travel-project.png',
     features: [
       'Developed Safar, a travel management website aimed at helping users plan trips and manage travel expenses.',
       'Implemented key features such as a Responsive design and multimedia integration, improving user engagement and overall experience.',
       'Leveraged Create React App for streamlined development, enabling efficient build processes, testing, and deployment.'
     ],
     liveUrl: '#',
-    githubUrl: '#',
+    githubUrl: 'https://github.com/Sandhya175/Tours-and-Travel-Website',
     stats: [
       { label: 'Stack', value: 'CRA Template' },
       { label: 'Styles', value: 'CSS3 Modules' },
@@ -196,14 +218,14 @@ export const PROJECTS_DATA: Project[] = [
     description: 'Scafe coordinates operations for a modern cafe including menu listing displays and customer orders, backed by a self-directed secure system login audit that eliminates auth loopholes.',
     technologies: ['HTML', 'CSS', 'JavaScript'],
     category: 'other',
-    image: 'https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&q=80&w=800',
+    image: '/assets/scafe-project.png',
     features: [
       'The Scafe project includes features for managing a cafe\'s operations, such as menu listings, order management, and customer interactions, providing an efficient and user-friendly experience.',
       'Led an initiative to implement a secure login system, identifying and addressing security vulnerabilities to enhance user data protection.',
       'Scafe includes interactive elements that create a seamless experience, such as smooth navigation, visual feedback on selections, and accessible design components that elevate the overall user experience.'
     ],
     liveUrl: '#',
-    githubUrl: '#',
+    githubUrl: 'https://github.com/Sandhya175/Scafe',
     stats: [
       { label: 'Language', value: 'Vanilla JS' },
       { label: 'Auth Sec', value: 'Validated Login' },
@@ -217,14 +239,14 @@ export const PROJECTS_DATA: Project[] = [
     description: 'An elegant desktop workflow system to register library books, log active student cards, and trigger validation checks, built with Tkinter and SQLite.',
     technologies: ['Python', 'Tkinter', 'SQLite'],
     category: 'other',
-    image: 'https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&q=80&w=800',
+    image: '/assets/library-mgmt-project.png',
     features: [
       'Designed and maintained application workflows for book and user management.',
       'Debugged functional issues and ensured data consistency using SQLite.',
       'Handled system logic, validations, and error scenarios.'
     ],
     liveUrl: '#',
-    githubUrl: '#',
+    githubUrl: 'https://github.com/Sandhya175/Library-Management',
     stats: [
       { label: 'Database', value: 'SQLite3' },
       { label: 'Visual Interface', value: 'Tkinter' },
@@ -238,7 +260,7 @@ export const PROJECTS_DATA: Project[] = [
     description: 'A hardware-software IoT solution controlled via gamepad or mobile devices, supporting individuals with physical challenges to navigate smoothly and safely.',
     technologies: ['Arduino', 'Bluetooth Communication', 'Motor Control', 'Power Management'],
     category: 'other',
-    image: 'https://images.unsplash.com/photo-1544006659-f0840bb71047?auto=format&fit=crop&q=80&w=800',
+    image: '/assets/mobilitymate-project.png',
     features: [
       'Developed a Bluetooth-enabled wheelchair controlled via a gamepad or mobile app, enhancing mobility for individuals with physical challenges.',
       'Designed the system using Arduino UNO, HC-05 Bluetooth module, L298N motor driver, and BO motors for smooth and precise navigation.',
