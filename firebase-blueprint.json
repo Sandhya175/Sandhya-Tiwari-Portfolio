@@ -1,0 +1,59 @@
+{
+  "entities": {
+    "LeaderboardEntry": {
+      "title": "Leaderboard Entry",
+      "description": "Represents an entry on the game leaderboard.",
+      "type": "object",
+      "properties": {
+        "name": { 
+          "type": "string",
+          "description": "The name of the player."
+        },
+        "time": { 
+          "type": "number",
+          "description": "The time elapsed in milliseconds."
+        },
+        "date": { 
+          "type": "number",
+          "description": "Timestamp when score was achieved."
+        }
+      },
+      "required": ["name", "time", "date"]
+    },
+    "ContactTransmission": {
+      "title": "Contact Transmission",
+      "description": "Represents a message sent through the digital portfolio contact form.",
+      "type": "object",
+      "properties": {
+        "name": { 
+          "type": "string",
+          "description": "The name of the sender."
+        },
+        "email": { 
+          "type": "string",
+          "description": "The email of the sender."
+        },
+        "message": { 
+          "type": "string",
+          "description": "The message body typed by the sender."
+        },
+        "timestamp": { 
+          "type": "string",
+          "format": "date-time",
+          "description": "The server timestamp."
+        }
+      },
+      "required": ["name", "email", "message"]
+    }
+  },
+  "firestore": {
+    "/artifacts/{appId}/public/data/leaderboard/{leaderboardId}": {
+      "schema": "LeaderboardEntry",
+      "description": "The public leaderboard scores for matches."
+    },
+    "/contacts/{contactId}": {
+      "schema": "ContactTransmission",
+      "description": "Form submissions made by visitors to contact Sandhya."
+    }
+  }
+}

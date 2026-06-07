@@ -1,0 +1,6 @@
+{
+  "name": "Sandhya Tiwari Portfolio",
+  "description": "Premium SaaS-driven developer operating system and interactive portfolio showcase for Sandhya Tiwari.",
+  "requestFramePermissions": ["camera"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
